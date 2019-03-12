@@ -2,7 +2,7 @@
 
 .. _rcs_subversion:
 
-Clase 16 - POO 2018
+Clase 16 - POO 2018 (No preparado aún)
 ===================
 (Fecha: 14 de mayo)
 

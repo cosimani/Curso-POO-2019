@@ -2,16 +2,18 @@
 
 .. _rcs_subversion:
 
-Clase 01 - POO 2018
+Clase 01 - POO 2019
 ===================
 (Fecha: 12 de marzo)
 
     :Autor: César Osimani
     :Mail: cesarosimani@gmail.com
-    :Fecha: 12 de marzo de 2018
+    :Fecha: 12 de marzo de 2019
     :Regularidad: 
 	    - 2 parciales 
-	    - Varios parcialitos y cuestionarios (3er nota)
+	    - Parcialitos, ejercicios y cuestionarios (3er nota)
+	    - Los ejericios son algunos de los que están en las clases
+	    - Los ejercicios se aprueban (7) o no aprueban (0), o puede ser sobresaliente (10).
 	    - Cumplir los siguientes requisitos
     :Requisitos: 
 	    - Nivel 5 o más en SoloLearn (para C++)
@@ -25,8 +27,8 @@ Clase 01 - POO 2018
 	        - OpenCV			
 	        - OpenGL			
     :Opcionales: 
-	    - Trabajo integrador individual o dos alumnos (no rinden parciales)
-	    - Cumplir 8 o más horas semanales en investigación (no rinde parciales)
+	    - Trabajo integrador individual o dos alumnos (no rinde parciales)
+	    - Cumplir 8 horas semanales en investigación (no rinde parciales)
     :Temas principales: 
 		- Espacio de nombres
 		- inline y const
