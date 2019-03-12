@@ -22,6 +22,7 @@ Clase 01 - POO 2019
 	        - API de Facebook
 	        - API de MercadoLibre
 	        - API de Spotify			
+	        - API de Instagram			
 	        - Qt en Android			
 	        - Qt Google Maps			
 	        - OpenCV			
