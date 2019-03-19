@@ -19,10 +19,10 @@ vector
 
 .. code-block:: c
 
-	vector< int > v1;    // vector vacío
-	vector< int > v2( 15 );    // vector de 15 elementos
-	vector< string > v3( 18, "cadena" );    // 18 elemento con valor inicial
-	vector< string > v4( v3 );    // v4 es una copia v3
+	vector< int > v1;                     // vector vacío
+	vector< int > v2( 15 );               // vector de 15 elementos
+	vector< string > v3( 18, "cadena" );  // 18 elemento con valor inicial
+	vector< string > v4( v3 );            // v4 es una copia v3
 
 **Algunas operaciones**
 
