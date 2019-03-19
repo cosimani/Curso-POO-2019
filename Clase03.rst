@@ -28,17 +28,17 @@ vector
 
 .. code-block:: c
 
-	size()    // Tamaño
+	size()          // Tamaño
 	bool empty()    // Está vacío?
 	void clear()    // Limpia el vector
-	front()    // Acceso al primero
-	back()    // Al último
-	push_back( x )    // Inserción al último
-	pop_back()    // Elimina
-	w = v    // Asignación
-	v == w    v < w    // Comparaciones
-	v.at( i )    // Acceso con verificación de rango (lanza out_of_range)
-	v[ i ]    // Acceso sin verificación de rango
+	front()         // Acceso al primero
+	back()          // Al último
+	push_back( x )  // Inserción al último
+	pop_back()      // Elimina
+	w = v           // Asignación
+	v == w   v < w  // Comparaciones
+	v.at( i )       // Acceso con verificación de rango (lanza out_of_range)
+	v[ i ]          // Acceso sin verificación de rango
 
 
 Cadena de caracteres
