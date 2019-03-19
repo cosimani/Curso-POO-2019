@@ -60,15 +60,15 @@ Cadena de caracteres
 
 	#include<string>
 
-	Asignación			s1 = s2		s1 = "Hola"
-	Concatenación		s1 = s2 + s3	
-	Comparación			if ( s1 == s2 )
-	Subcadenas			s1.substr( 3, 5 )
-	Longitud			s1.length()	s2.size()  // Son lo mismo
-	Acceso a char		s1[ 2 ]			s2.at( 2 )  // Lanza out_of_range
-	Limpiar				s1.clear()
-	Busca cadena		s1.find( "cadena" );    s1.find( s2 );
-	Puntero a char		const char *c = s1.c_str()
+	Asignación       s1 = s2    s1 = "Hola"
+	Concatenación    s1 = s2 + s3	
+	Comparación      if ( s1 == s2 )
+	Subcadenas       s1.substr( 3, 5 )
+	Longitud         s1.length()    s2.size()  // Son lo mismo
+	Acceso a char    s1[ 2 ]    s2.at( 2 )  // Lanza out_of_range
+	Limpiar          s1.clear()
+	Busca cadena     s1.find( "cadena" );    s1.find( s2 );
+	Puntero a char   const char *c = s1.c_str()
 
 
 **Ejercicio 2**
