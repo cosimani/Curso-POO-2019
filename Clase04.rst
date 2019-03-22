@@ -2,17 +2,30 @@
 
 .. _rcs_subversion:
 
-Clase 04 - POO 2018 (No preparado aún)
+Clase 04 - POO 2019
 ===================
-(Fecha: 20 de marzo)
+(Fecha: 22 de marzo)
 
-:Tarea para Clase 5:
+:Tarea para Clase 6:
 	Ver `Tutorial Qt qDebug <https://www.youtube.com/watch?v=z4cespk-EMk>`_ de `Videos tutoriales de Qt <https://www.youtube.com/playlist?list=PL54fdmMKYUJvn4dAvziRopztp47tBRNum>`_
 
 	Ver `Tutorial Qt QString <https://www.youtube.com/watch?v=gAfMOPKsgYk>`_ de `Videos tutoriales de Qt <https://www.youtube.com/playlist?list=PL54fdmMKYUJvn4dAvziRopztp47tBRNum>`_
 
 	Ver `Tutorial Qt QObject <https://www.youtube.com/watch?v=cDE9hg_Ajwc>`_ de `Videos tutoriales de Qt <https://www.youtube.com/playlist?list=PL54fdmMKYUJvn4dAvziRopztp47tBRNum>`_
 
+
+Para responder las preguntas sobre los videos
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Descargar y compilar `https://github.com/cosimani/Opcionables <https://github.com/cosimani/Opcionables>`_
+- Ejecutar y loguearse con su nombre de usuario de MiUBP y la clave es su número de legajo.
+
+
+**Ejercicio 2**
+
+- Crear un vector de 100 números enteros.
+- Los valores serán aleatorios y positivos menores o iguales a 10.
+- Utilizar un algoritmo para ordenar de menor a mayor estos números.
 
 
 En busca de proyectos
