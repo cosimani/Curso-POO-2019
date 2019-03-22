@@ -21,6 +21,15 @@ Para responder las preguntas sobre los videos
 - Ejecutar y loguearse con su nombre de usuario de MiUBP y la clave es su número de legajo.
 
 
+Fechas para parciales
+^^^^^^^^^^^^^^^^^^^^^
+
+- Primer parcial: 3 de mayo
+- Segundo parcial: 7 de junio
+- Tercer parcial: 14 de junio
+- Recuperatorios de los tres parciales en la última semana de clases.
+
+
 **Ejercicio 2**
 
 - Crear un vector de 100 números enteros.
