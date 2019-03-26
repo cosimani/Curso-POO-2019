@@ -304,8 +304,8 @@ Primer aplicación en Qt con interfaz gráfica
 		- VirtualBox
 		- Google Earth 
 		- Spotify para Linux
-	- En 2012 Digia compra Qt y comercializa las licencias 
-	- Digia desarrolló herramientas para usar Qt en iOS, Android y Blackberry.
+	- En 2012, Digia compra Qt y comercializa las licencias 
+	- Digia desarrolló herramientas para usar Qt en iOS y Android.
 		
 .. code-block:: c
 
