@@ -2,12 +2,9 @@
 
 .. _rcs_subversion:
 
-Clase 05 - POO 2018 (No preparado aún)
+Clase 05 - POO 2019
 ===================
 (Fecha: 26 de marzo)
-
-:Tarea para Clase 8:
-	Entregar los ejercicios que están enumerados incluyendo los de la clase 6
 
 
 Clases
@@ -36,14 +33,14 @@ Clases
 		
 	public:
 	    // Funciones miembro de la clase "Punto"
-	    void getDatos(int &a2, int &b2);
-	    void setDatos(int a2, int b2)  {
+	    void getDatos( int &a2, int &b2 );
+	    void setDatos( int a2, int b2 )  {
 	        a = a2;
 	        b = b2;
 	    }
 	};
 
-	void Punto::getDatos(int &a2, int &b2)  {
+	void Punto::getDatos( int &a2, int &b2 )  {
 	    a2 = a;
 	    b2 = b;
 	}
@@ -52,8 +49,8 @@ Clases
 	    Punto punto1;
 		int x, y;  // Variables donde se copiarán los valores de punto1
 
-	    punto1.setDatos(12, 32);
-	    punto1.getDatos(x, y);
+	    punto1.setDatos( 12, 32 );
+	    punto1.getDatos( x, y );
 
 	    cout << "(" << x << “, ” << y << “)” << endl;
 	}
@@ -67,27 +64,27 @@ Clases
 
 	class Punto  {
 	public:
-	    Punto(int a2, int b2);
+	    Punto( int a2, int b2 );
 
-	    void getDatos(int &a2, int &b2);
-	    void setDatos(int a2, int b2);
+	    void getDatos( int &a2, int &b2 );
+	    void setDatos( int a2, int b2 );
 		
 	private:
 	    // Datos miembro de la clase "Punto"
 	    int a, b;
 	};
 
-	Punto::Punto(int a2, int b2)  {
+	Punto::Punto( int a2, int b2 )  {
 	    a = a2;
 	    b = b2;
 	}
 
-	void Punto::getDatos(int &a2, int &b2)  {
+	void Punto::getDatos( int &a2, int &b2 )  {
 	    a2 = a;
 	    b2 = b;
 	}
 
-	void Punto::setDatos(int a2, int b2)  {
+	void Punto::setDatos( int a2, int b2 )  {
 	    a = a2;
 	    b = b2;
 	}
@@ -106,24 +103,24 @@ Clases
 	                 // devuelve un objeto Punto. Es decir, no sirve para instanciar un 
 					 // objeto con el contructor sin parámetros de Punto.
 
-	Punto punto1(12,43);  // Válido
-	Punto punto2(45,34);  // Válido
+	Punto punto1( 12, 43 );  // Válido
+	Punto punto2( 45, 34 );  // Válido
 
 
 **Inicialización de objetos**
 
 .. code-block:: c
 
-	Punto(int a2, int b2)  {
+	Punto( int a2, int b2 )  {
 	    a = a2;
 	    b = b2;
 	}
 
 	// O también se permite:
 
-	Punto::Punto(int a2, int b2) : a(a2), b(b2)  {  }
+	Punto::Punto( int a2, int b2 ) : a( a2 ), b( b2 )  {  }
 
-	Punto::Punto() : a(0), b(0)  {  }
+	Punto::Punto() : a( 0 ), b( 0 )  {  }
 
 **El puntero this**
 
@@ -135,25 +132,25 @@ Clases
 	class Punto  {
 	public:
 	    // Constructor
-	    Punto(int a2, int b2)  {  }
+	    Punto( int a2, int b2 )  {  }
 	
 	    // Funciones miembro de la clase "Punto"
-	    void getDatos(int &a2, int &b2)  {  }
-	    void setDatos(int a2, int b2);
+	    void getDatos( int &a2, int &b2 )  {  }
+	    void setDatos( int a2, int b2 );
 	
 	private:
 	    // Datos miembro de la clase "Punto"
 	    int a, b;
 	};
 
-	void Punto::setDatos(int a2, int b2) {
+	void Punto::setDatos( int a2, int b2 ) {
 	    a = a2;
 	    b = b2;
 	}
 
 	// O lo podemos hacer con this:
 
-	void Punto::setDatos(int a2, int b2) {
+	void Punto::setDatos( int a2, int b2 ) {
 	    this->a = a2;
 	    this->b = b2;
 	}
@@ -165,9 +162,9 @@ Clases
 
 	class ClaseA  {
 	public:
-	    ClaseA(int a = 10, int b = 20) : a(a), b(b)  {  }
+	    ClaseA( int a = 10, int b = 20 ) : a( a ), b( b )  {  }
 	
-	    void verDatos(int &a, int &b)  {
+	    void verDatos( int &a, int &b )  {
 	        a = this->a;
 	        b = this->b;
 	    }
@@ -176,11 +173,11 @@ Clases
 	    int a, b;
 	};
 
-	int main(int argc, char** argv)  {
-	    ClaseA* objA = new ClaseA;
+	int main( int argc, char** argv )  {
+	    ClaseA * objA = new ClaseA;
 
 	    int a, b;
-	    objA->verDatos(a, b);
+	    objA->verDatos( a, b );
 	
 	    std::cout << "a = " << a << " b = " << b << std::endl;
 
@@ -189,9 +186,9 @@ Clases
 
 	// Probar con:	
 	
-	ClaseA(int c, int a = 10, int b = 20) : a(a), b(b), c(0)  {  }
+	ClaseA( int c, int a = 10, int b = 20 ) : a( a ), b( b ), c( 0 )  {  }
 
-	ClaseA(int a = 10, int b = 20, int c) : a(a), b(b), c(0)  {  }
+	ClaseA( int a = 10, int b = 20, int c ) : a( a ), b( b ), c( 0 )  {  }
 
 **Destructor**
 
@@ -318,14 +315,14 @@ Primer aplicación en Qt con interfaz gráfica
 	// - Existe una única instancia
 	// - Analiza los argumentos de la línea de comandos
 
-	int main(int argc, char** argv)  {	
+	int main( int argc, char** argv )  {	
 	    // app es la instancia y se le pasa los parámetros de la línea
 	    // de comandos para que los procese.
-	    QApplication app(argc, argv); 
+	    QApplication app( argc, argv ); 
 
-	    QLabel hola("<H1 aling=right> Hola </H1>");
-	    hola.resize(200, 100);
-	    hola.setVisible(true);
+	    QLabel hola( "<H1 aling=right> Hola </H1>" );
+	    hola.resize( 200, 100 );
+	    hola.setVisible( true );
 
 	    app.exec();  // Se le pasa el control a Qt
 	    return 0;
@@ -344,13 +341,13 @@ Signals y slots
 
 .. code-block:: c
 
-	QObject::connect(emisor, SIGNAL(signal), receptor, SLOT(slot));
+	QObject::connect( emisor, SIGNAL( signal ), receptor, SLOT( slot ) );
 	
 - Se puede remover la conexión:
 
 .. code-block:: c
 
-	QObject::disconnect(emisor, SIGNAL(signal), receptor, SLOT(slot));
+	QObject::disconnect( emisor, SIGNAL( signal ), receptor, SLOT( slot ) );
 
 **Ejemplo:** QPushButton para cerrar la aplicación.
 
@@ -359,12 +356,12 @@ Signals y slots
 	#include <QApplication>
 	#include <QPushButton>
 
-	int main(int argc, char** argv)  {
-	    QApplication a(argc, argv);
-	    QPushButton* boton = new QPushButton("Salir");
+	int main( int argc, char** argv )  {
+	    QApplication a( argc, argv );
+	    QPushButton* boton = new QPushButton( "Salir" );
 
-	    QObject::connect(boton, SIGNAL(clicked()), &a, SLOT(quit()));
-	    boton->setVisible(true);
+	    QObject::connect( boton, SIGNAL( pressed() ), &a, SLOT( quit() ) );
+	    boton->setVisible( true );
 		
 	    return a.exec();
 	}
