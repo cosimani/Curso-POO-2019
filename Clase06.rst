@@ -2,18 +2,53 @@
 
 .. _rcs_subversion:
 
-Clase 06 - POO 2018 (No preparado aún)
+Clase 06 - POO 2019
 ===================
-(Fecha: 27 de marzo)
+(Fecha: 29 de marzo)
+
+**Constructores con argumentos por defecto**
+
+.. code-block:: c
+
+	class ClaseA  {
+	public:
+	    ClaseA( int a = 10, int b = 20 ) : a( a ), b( b )  {  }
+	
+	    void verDatos( int &a, int &b )  {
+	        a = this->a;
+	        b = this->b;
+	    }
+
+	private:
+	    int a, b;
+	};
+
+	int main( int argc, char** argv )  {
+	    ClaseA * objA = new ClaseA;
+
+	    int a, b;
+	    objA->verDatos( a, b );
+	
+	    std::cout << "a = " << a << " b = " << b << std::endl;
+
+	    return 0;
+	}
+
+	// Probar con:	
+	
+	ClaseA( int c, int a = 10, int b = 20 ) : a( a ), b( b ), c( 0 )  {  }
+
+	ClaseA( int a = 10, int b = 20, int c ) : a( a ), b( b ), c( 0 )  {  }
+
 
 QLineEdit
 ^^^^^^^^^
 
 .. code-block:: c
 
-	QLineEdit* le = new QLineEdit;
-	le->setEchoMode(QLineEdit::Password);
-	le->setEnabled(false);
+	QLineEdit * le = new QLineEdit;
+	le->setEchoMode( QLineEdit::Password );
+	le->setEnabled( false );
 
 	// QLineEdit::Normal  // Se visualizan al escribir
 	// QLineEdit::NoEcho  // No se visualiza nada
@@ -28,9 +63,9 @@ QLineEdit
 
 	// void editingFinished()  // Cuando pierde foco.
 
-	// void textChanged(const QString &text)  // Texto modificado por código o por usuario desde la gui.
+	// void textChanged( const QString & text )  // Texto modificado por código o por usuario desde la gui.
 
-	// void textEdited(const QString &text)  // Sólo por el usuario.
+	// void textEdited( const QString & text )  // Sólo por el usuario.
 
 
 QGridLayout
@@ -38,15 +73,15 @@ QGridLayout
 
 - Ubica los widgets en una grilla
 - Con setColumnMinimumWidth() podemos setear el ancho mínimo de columna
-- Separación entre widget con setVerticalSpacing(int)
-- void addWidget(QWidget* widget, int fila, int columna, int spanFila, int spanCol)
+- Separación entre widget con setVerticalSpacing( int )
+- void addWidget( QWidget * widget, int fila, int columna, int spanFila, int spanCol )
 
 Macro Q_OBJECT
 ^^^^^^^^^^^^^^
 
 - Convierte a una clase cualquiera en una clase Qt.
 - Una clase Qt permitirá trabajar con signals y slots.
-- Con la macro Q_OBJECT en la declaración de la clase la convertimos.
+- Incluir la macro Q_OBJECT en la primer línea de la definición de la clase.
 
 	
 **Ejemplo:** Control de volumen
@@ -59,28 +94,28 @@ Macro Q_OBJECT
 	#include <QSlider>
 	#include <QSpinBox>
 
-	int main(int argc, char** argv)  {
-	    QApplication a(argc, argv);
+	int main( int argc, char** argv )  {
+	    QApplication a( argc, argv );
 
-	    QWidget* ventana = new QWidget;  // Es la ventana padre (principal)
-	    ventana->setWindowTitle("Volumen"); 
-	    ventana->resize(300, 50);
+	    QWidget * ventana = new QWidget;  // Es la ventana padre (principal)
+	    ventana->setWindowTitle( "Volumen" ); 
+	    ventana->resize( 300, 50 );
 
-	    QSpinBox* spinBox = new QSpinBox;
-	    QSlider* slider = new QSlider(Qt::Horizontal);
-	    spinBox->setRange(0, 100);
-	    slider->setRange(0, 100);
+	    QSpinBox * spinBox = new QSpinBox;
+	    QSlider * slider = new QSlider( Qt::Horizontal );
+	    spinBox->setRange( 0, 100 );
+	    slider->setRange( 0, 100 );
 
-	    QObject::connect(spinBox, SIGNAL(valueChanged(int)), slider, SLOT(setValue(int)));
-	    QObject::connect(slider, SIGNAL(valueChanged(int)),  spinBox, SLOT(setValue(int)));
+	    QObject::connect( spinBox, SIGNAL( valueChanged( int ) ), slider, SLOT( setValue( int ) ) );
+	    QObject::connect( slider, SIGNAL( valueChanged( int ) ),  spinBox, SLOT( setValue( int ) ) );
 
-	    spinBox->setValue(15);
+	    spinBox->setValue( 15 );
 
-	    QHBoxLayout* layout = new QHBoxLayout;
-	    layout->addWidget(spinBox);
-	    layout->addWidget(slider);
-	    ventana->setLayout(layout);
-	    ventana->setVisible(true);	
+	    QHBoxLayout * layout = new QHBoxLayout;
+	    layout->addWidget( spinBox );
+	    layout->addWidget( slider );
+	    ventana->setLayout( layout );
+	    ventana->setVisible( true );	
 
 	    return a.exec();
 	}
@@ -101,9 +136,13 @@ Macro Q_OBJECT
 - Tener en cuenta que este ejercicio requiere conocer cómo se define un slot propio.
 
 
-**Resolución de este ejercicio**
+.. ..
+ 
+ <!---  
 
-.. code-block:: c
+ **Resolución de este ejercicio**
+
+ .. code-block:: c
 
 	// main.cpp
 	#include <QApplication>
@@ -178,3 +217,4 @@ Macro Q_OBJECT
 	    }
 	}
 
+ --->
