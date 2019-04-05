@@ -2,9 +2,9 @@
 
 .. _rcs_subversion:
 
-Clase 07 - POO 2018 (No preparado aún)
+Clase 07 - POO 2019
 ===================
-(Fecha: 3 de abril)
+(Fecha: 5 de abril)
 
 QGroupBox
 ^^^^^^^^^ 
