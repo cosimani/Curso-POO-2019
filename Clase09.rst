@@ -7,6 +7,31 @@ Clase 09 - POO 2019
 (Fecha: 12 de abril)
 
 
+**Array como parámetro en funciones**
+
+.. code-block:: c
+
+	#include <iostream>
+	using namespace std;
+
+	void funcion( int miArray[] );
+	// Le estamos pasando un puntero al primer elemento del array.
+
+	int main()  {
+	    int miA[ 5 ] = { 0, 1, 2, 3, 4 };
+
+	    funcion( miA );
+
+	    cout << miA[ 0 ] << miA[ 1 ] << miA[ 2 ] << miA[ 3 ] << miA[ 4 ];
+	}
+
+	void funcion( int miArray[] )  {
+	    miArray[ 0 ] = 5;  // Las modificaciones quedarán.
+
+	    miArray[ 3 ] = 5; 
+	} 
+
+
 Parámetros desde la línea de comandos
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -22,6 +47,22 @@ Parámetros desde la línea de comandos
 	        std::cout << argv[ i ] << std::endl;
 	    }
 	}
+
+
+
+QByteArray
+^^^^^^^^^^
+
+- Se podría decir que es administrador de un char*
+- Se puede usar el operador []
+- Almacena \\000 al final de cada objeto QByteArray
+
+
+**CamelCase**: Es escribir con la forma de jorobas de camello con las mayúsculas y minúsculas. 
+
+- UpperCamelCase: La primera letra de cada palabra es mayúscula. Ejemplo: EjemploDeUpperCamelCase.
+- lowerCamelCase: Igual a UpperCamelCase con excepción de la primer palabra. Ejemplo: ejemploDeLowerCamelCase
+
 
 
 El preprocesador
@@ -63,6 +104,7 @@ El preprocesador
  
 .. figure:: images/clase07/define.png
 
+
 **Ejercicio:**
 
 - Nuevo proyecto Empty 
@@ -70,6 +112,9 @@ El preprocesador
 - En el archivo ``main.cpp`` incluir dos veces el archivo .h
 - Tratar de resolver el problema sólo modificando el .h
 
+
+Guardián de inclusión múltiple
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
  - Este problema se soluciona con el uso del **Guardián de inclusión múltiple**:
 
@@ -81,6 +126,35 @@ El preprocesador
 	// . . . 
 
 	#endif // PRINCIPAL_H
+
+
+
+
+QTextEdit
+^^^^^^^^^
+
+- Un QWidget que muestra texto plano o enriquecido
+- Puede mostrar imágenes, listas y tablas
+- La barra de desplazamiento es automática
+- Interpreta tags HTML
+- Seteamos texto con setPlainText()
+
+**Ejercicio 7**
+
+- Crear una aplicación que inicie con un login validando el usuario admin:123
+- Luego de ingresar el usuario válido, mostrar un nuevo QWidget con las siguientes características:
+	- Definida en la clase Editor
+	- Contendrá un QTextEdit vacío, un QPushButton "Buscar" y un QLabel
+	- El usuario podrá escribir cualquier texto en el QTextEdit
+	- Al presionar "Buscar" se detectará automáticamente la cantidad de letras 'a' en el texto y colocará el resultado en el QLabel.
+- Luego de dejar funcionando lo anterior, agregar lo siguiente:
+	- Un QLineEdit y un QPushButton "Borrar"
+	- En este QLineEdit el usuario puede colocar una palabra o frase
+	- Al presionar Borrar se buscará en el texto y se eliminarán
+
+
+
+
 
 	
 Dibujar a mano sobre un QWidget
