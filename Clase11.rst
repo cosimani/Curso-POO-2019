@@ -219,12 +219,3 @@ Clase QNetworkProxyFactory
 	}
 
 
-Obtener una imagen desde internet
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: c
-
-	void Principal::slot_descargaFinalizada(QNetworkReply *reply)  {
-	    QImage image = QImage::fromData(reply->readAll());
-	}
-

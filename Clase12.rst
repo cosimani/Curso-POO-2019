@@ -2,33 +2,48 @@
 
 .. _rcs_subversion:
 
-Clase 12 - POO 2018 (No preparado aún)
+Clase 12 - POO 2019
 ===================
-(Fecha: 23 de abril)
+(Fecha: 26 de abril)
 
 
-**Google Maps**
+Obtener una imagen desde internet
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- URL para su uso: https://developers.google.com/maps/documentation/staticmaps
-- Ejemplo: http://maps.googleapis.com/maps/api/staticmap?center=rondeau+100+cordoba&zoom=15&size=500x300&maptype=roadmap&sensor=false
-- Descripción de los parámetros en: https://developers.google.com/maps/documentation/staticmaps/#URL_Parameters
-- Pueden habilitar otros servicios en https://code.google.com/apis/console
+.. code-block:: c
 
-
-**Ejercicio 8** 
-
-- Hacer una aplicación para buscar una dirección en Google Maps
-- Definir la clase Mapa. Será el QWidget donde se dibujará el mapa de google.
-- Definir la clase Ventana para contener al layout.
-- Ese layout tendrá:
-	- QLineEdit para ingresar un domicilio
-	- QPushButton para buscar ese domicilio
-	- Mapa
-	- QSlider vertical para aumentar y disminuir el zoom
+	void Principal::slot_descargaFinalizada(QNetworkReply *reply)  {
+	    QImage image = QImage::fromData(reply->readAll());
+	}
 
 
+**Algunas particularidades de QNetworkReply y QNetworkRequest**
+
+- Para controlar los bytes que se van descargando se puede usar la señal de QNetworkReply:
+
+.. code-block:: c
+
+	void downloadProgress(qint64 bytesRecibidos, qint64 bytesTotal)
+
+- Los campos de la cabecera HTTP se pueden setear con el método de QNetworkRequest:
+
+.. code-block:: c
+
+	void setRawHeader(const QByteArray &nombre, const QByteArray & valor)
+
+	QNetworkRequest request;
+	request.setUrl(QUrl(ui->le->text()));
+	request.setRawHeader("User-Agent", "MiNavegador 1.0");
 
 
+**Ejercicio 8**
+
+- Buscar el correspondiente valor de User-Agent para un navegador en Android y otro para PC
+- Realizar una interfaz que permita colocar en un QLineEdit la url de una página web
+- Validar que si el usuario no escribe el www, que lo agregue, y si no coloca https://, que lo agregue.
+- Realizar dos consultas a la página web con ambos valores de User-Agent
+- Mostrar en dos QTextEdit el código fuente de ambas páginas.
+- Comparar si los códigos son iguales y que un QLabel muestre "Iguales" o "Distintos" según corresponda.
 
 
 Polimorfismo
