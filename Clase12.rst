@@ -45,6 +45,18 @@ Obtener una imagen desde internet
 - Mostrar en dos QTextEdit el código fuente de ambas páginas.
 - Comparar si los códigos son iguales y que un QLabel muestre "Iguales" o "Distintos" según corresponda.
 
+**Ejercicio 9**
+
+- Crear una clase Barra para dar funcionalidad a una barra de progreso
+- Que la barra tenga el siguiente aspecto:
+
+.. figure:: images/clase12/progressbar.png
+
+- Debe tener métodos para setear su valor en porcentaje
+- Usar la señal de downloadProgress de QNetworkReply
+- Crear una interfaz que tenga un QLineEdit para la URL y una Barra.
+- Probarlo con alguna URL que pertenezca a un archivo de tamaño superior a 50MB
+
 
 Polimorfismo
 ^^^^^^^^^^^^
