@@ -2,29 +2,138 @@
 
 .. _rcs_subversion:
 
-Clase 14 - POO 2018 (No preparado aún)
+Clase 14 - POO 2019
 ===================
-(Fecha: 7 de mayo)
+(Fecha: 10 de mayo)
 		
 
-**Google Maps**
+**Preparando la clase AdminDB**
 
-- URL para su uso: https://developers.google.com/maps/documentation/staticmaps
-- Ejemplo: http://maps.googleapis.com/maps/api/staticmap?center=rondeau+100+cordoba&zoom=15&size=500x300&maptype=roadmap&sensor=false
-- Descripción de los parámetros en: https://developers.google.com/maps/documentation/staticmaps/#URL_Parameters
-- Pueden habilitar otros servicios en https://code.google.com/apis/console
+- Definir una clase AdminDB para administrar la base de datos
+- Crear el siguiente método:
+
+.. code-block:: c
+	
+	bool conectar(QString archivoSqlite); 
+
+- En un proyecto nuevo y desde la función main() intentar la conexión.
+
+.. code-block:: c
+
+	// --- adminDB.h ---------------
+	#include <QSqlDatabase>
+	#include <QString>
+	#include <QObject>
+
+	class AdminDB : public QObject  {
+	    Q_OBJECT
+
+	public:
+	    AdminDB();
+	    bool conectar(QString archivoSqlite);
+	    QSqlDatabase getDB();
+
+	private:
+	    QSqlDatabase db;
+	};
+
+	// --- adminDB.cpp ------------
+	#include "adminDB.h"
+
+	AdminDB::AdminDB()  {
+	    db = QSqlDatabase::addDatabase("QSQLITE");
+	}
+
+	bool AdminDB::conectar(QString archivoSqlite)  {
+	    db.setDatabaseName(archivoSqlite);
+
+	    if(db.open())
+	        return true;
+
+	    return false;
+	}
+
+	QSqlDatabase AdminDB::getDB()  {
+	    return db;
+	}
+
+	// --- main.cpp  ----------------
+	#include <QApplication>
+	#include "adminDB.h"
+
+	int main(int argc, char** argv)  {
+	    QApplication a(argc, argv);
+
+	    qDebug() << QDir::currentPath();
+
+	    AdminDB adminDB;
+	    if (adminDB.conectar("C:/Qt/db/test"))
+	        qDebug() << "Conexion exitosa";
+	    else
+	        qDebug() << "Conexion NO exitosa";
+
+	return 0;
+	}
+
+Consulta a la base de datos
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: c
+
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+
+	db.setDatabaseName("C:/Qt/db/test"); 
+
+	if (db.open())  {
+	    QSqlQuery query = db.exec("SELECT nombre, apellido FROM usuarios");
+
+	    while(query.next())  {
+	        qDebug() << query.value(0).toString() << " " << query.value(1).toString();
+	    }
+	}
+
+	
 
 
-**Ejercicio 10** 
+**Ejemplo**: slot de la clase Login para que valide usuarios contra la base
 
-- Hacer una aplicación para buscar una dirección en Google Maps
-- Definir la clase Mapa. Será el QWidget donde se dibujará el mapa de google.
-- Definir la clase Ventana para contener al layout.
-- Ese layout tendrá:
-	- QLineEdit para ingresar un domicilio
-	- QPushButton para buscar ese domicilio
-	- Mapa
-	- QSlider vertical para aumentar y disminuir el zoom
+.. code-block:: c
+
+	void Login::slot_validar()  {
+	    bool usuarioValido = false;
+
+	    if (adminDB->getDB().isOpen())  {  
+	        QSqlQuery* query = new QSqlQuery(adminDB->getDB());
+
+	        query->exec("SELECT nombre, apellido FROM usuarios WHERE usuario='" + 
+	        leUsuario->text() + "' AND clave='" + leClave->text() + "'");
+
+	        // Si los datos son consistentes, devolverá un único registro.
+	        while (query->next())  {
+
+	            QSqlRecord record = query->record();
+
+	            // Obtenemos el número de la columna de los datos que necesitamos.
+	            int columnaNombre = record.indexOf("nombre");
+	            int columnaApellido = record.indexOf("apellido");
+
+	            // Obtenemos los valores de las columnas.
+	            qDebug() << "Nombre=" << query->value(columnaNombre).toString();
+	            qDebug() << "Apellido=" << query->value(columnaApellido).toString();
+
+	            usuarioValido = true;
+	        }
+
+	        if (usuarioValido)  {
+	            QMessageBox::information(this, "Conexión exitosa", "Válido");
+	        }
+	        else  {
+	            QMessageBox::critical(this, "Sin permisos", "Usuario inválido");
+	        }
+	    }
+	}
+
+
 
 	
 Funciones virtuales
@@ -127,6 +236,28 @@ Función virtual pura y clase abstracta
 
 	    return a.exec();
 	}
+
+
+
+**Google Maps**
+
+- URL para su uso: https://developers.google.com/maps/documentation/staticmaps
+- Ejemplo: http://maps.googleapis.com/maps/api/staticmap?center=rondeau+100+cordoba&zoom=15&size=500x300&maptype=roadmap&sensor=false
+- Descripción de los parámetros en: https://developers.google.com/maps/documentation/staticmaps/#URL_Parameters
+- Pueden habilitar otros servicios en https://code.google.com/apis/console
+
+
+**Ejercicio 10** 
+
+- Hacer una aplicación para buscar una dirección en Google Maps
+- Definir la clase Mapa. Será el QWidget donde se dibujará el mapa de google.
+- Definir la clase Ventana para contener al layout.
+- Ese layout tendrá:
+	- QLineEdit para ingresar un domicilio
+	- QPushButton para buscar ese domicilio
+	- Mapa
+	- QSlider vertical para aumentar y disminuir el zoom
+
 
 
 		
