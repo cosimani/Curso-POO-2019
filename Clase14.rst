@@ -156,7 +156,8 @@ Consulta a la base de datos
 	        return datosPersonales;
 
 	    QSqlQuery * query = new QSqlQuery( db );
-	    QString claveMd5 = QCryptographicHash::hash( claveMd5.toUtf8(),	QCryptographicHash::Md5 ).toHex();
+	    QString claveMd5 = QCryptographicHash::hash( claveMd5.toUtf8(), 
+	                                                 QCryptographicHash::Md5 ).toHex();
 
 	    query->exec( "SELECT nombre, apellido FROM " +
 	                 tabla + " WHERE usuario = '" + usuario +
@@ -164,7 +165,7 @@ Consulta a la base de datos
 	
 	    while( query->next() )  {
 	        QSqlRecord registro = query->record();
-	        
+
 	        datosPersonales << query->value( registro.indexOf( "nombre" ).toString() );
 	        datosPersonales << query->value( registro.indexOf( "apellido" ).toString() );
 	    }
