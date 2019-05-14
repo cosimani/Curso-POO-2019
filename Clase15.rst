@@ -2,12 +2,20 @@
 
 .. _rcs_subversion:
 
-Clase 15 - POO 2018 (No preparado aún)
+Clase 15 - POO 2019
 ===================
 (Fecha: 8 de mayo)
 
+:Tarea para Clase 16:
+	Se tomará un mini examen en computadora para resolver en 30 minutos
 
+	Se pedirá un programa con un login que valide usuario con la base de datos
+
+	Será necesario: JADE para creación de archivos .sqlite, creación de tablas, carga de datos, etc.
+
+	También: MD5, contenido de las clases 13 y 14, Ejercicios 10 y 11, QSqlQuery, QSqlRecord, QSqlError
 	
+
 Funciones virtuales
 ^^^^^^^^^^^^^^^^^^^
 
