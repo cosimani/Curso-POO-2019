@@ -6,15 +6,16 @@ Clase 15 - POO 2019
 ===================
 (Fecha: 8 de mayo)
 
-:Para Clase 16:
+:Tarea para Clase 16:
 	Se tomará un mini examen en computadora para resolver en 30 minutos
 
-	Se pedirá un programa con un login que valide usuario con la base de datos
+	Traer un programa con un login que valide usuario con la base de datos
 
 	Será necesario: JADE para creación de archivos .sqlite, creación de tablas, carga de datos, etc.
 
-	También: MD5, contenido de las clases 13 y 14, Ejercicios 10 y 11, QSqlQuery, QSqlRecord, QSqlError
-	
+	También: MD5, material de las clases 13 y 14, Ejercicios 10 y 11, QSqlQuery, QSqlRecord, QSqlError, Registrar eventos (logs), INSERT INTO.
+
+
 
 Funciones virtuales
 ^^^^^^^^^^^^^^^^^^^
@@ -120,7 +121,7 @@ Función virtual pura y clase abstracta
 
 
 
-**Ejercicio 11**
+**Ejercicio 12**
 
 - Diseñar una aplicación para una galería de fotos
 - Debe tener una base con una tabla 'imagenes' que tenga las URLs de imágenes
@@ -145,7 +146,7 @@ Función virtual pura y clase abstracta
 	    nombreSqlite = "/home/cosimani/db/test";
 	#endif
 
-	if (adminDB.conectar(nombreSqlite))
+	if ( adminDB.conectar( nombreSqlite ) )
 	    qDebug() << "Conexion exitosa";
 
 
@@ -180,30 +181,6 @@ Función virtual pura y clase abstracta
 
 .. |ImageLink4| image:: /images/clase12/consultarDatos.gif
 .. _ImageLink4: https://www.youtube.com/watch?v=8emd37mvN2E
-
-
-
-
-**Google Maps**
-
-- URL para su uso: https://developers.google.com/maps/documentation/staticmaps
-- Ejemplo: http://maps.googleapis.com/maps/api/staticmap?center=rondeau+100+cordoba&zoom=15&size=500x300&maptype=roadmap&sensor=false
-- Descripción de los parámetros en: https://developers.google.com/maps/documentation/staticmaps/#URL_Parameters
-- Pueden habilitar otros servicios en https://code.google.com/apis/console
-
-
-**Ejercicio 12** 
-
-- Hacer una aplicación para buscar una dirección en Google Maps
-- Definir la clase Mapa. Será el QWidget donde se dibujará el mapa de google.
-- Definir la clase Ventana para contener al layout.
-- Ese layout tendrá:
-	- QLineEdit para ingresar un domicilio
-	- QPushButton para buscar ese domicilio
-	- Mapa
-	- QSlider vertical para aumentar y disminuir el zoom
-
-
 
 
 Registrar eventos (logs)
@@ -253,19 +230,19 @@ Registrar eventos (logs)
 	#include <QSqlQuery>
 	#include <QSqlRecord>
 
-	AdminDB::AdminDB(QObject *parent) : QObject(parent)  {
+	AdminDB::AdminDB( QObject * parent ) : QObject( parent )  {
 	    qDebug() << "Drivers disponibles:" << QSqlDatabase::drivers();
 
-	    db = QSqlDatabase::addDatabase("QSQLITE");
+	    db = QSqlDatabase::addDatabase( "QSQLITE" );
 	}
 
 	AdminDB::~AdminDB()  {
-	    if (db.isOpen())
+	    if ( db.isOpen() )
 	        db.close();
 	}
 
-	bool AdminDB::conectar(QString archivoSqlite)  {
-	    db.setDatabaseName(archivoSqlite);
+	bool AdminDB::conectar( QString archivoSqlite )  {
+	    db.setDatabaseName( archivoSqlite );
 
 	    return db.open();
 	}
@@ -278,21 +255,21 @@ Registrar eventos (logs)
 	    return db.isOpen();
 	}
 
-	void AdminDB::mostrarTabla(QString tabla)  {
-	    if (this->isConnected())  {
-	        QSqlQuery query = db.exec("SELECT * FROM " + tabla);
+	void AdminDB::mostrarTabla( QString tabla )  {
+	    if ( this->isConnected() )  {
+	        QSqlQuery query = db.exec( "SELECT * FROM " + tabla );
 
-	        if (query.size() == 0 || query.size() == -1)
+	        if ( query.size() == 0 || query.size() == -1 )
 	            qDebug() << "La consulta no trajo registros";
 
-	        while(query.next())  {
+	        while( query.next() )  {
 	            QSqlRecord registro = query.record();  // Devuelve un objeto que maneja un registro (linea, row)
 	            int campos = registro.count();  // Devuleve la cantidad de campos de este registro
 
 	            QString informacion;  // En este QString se va armando la cadena para mostrar cada registro
-	            for (int i=0 ; i<campos ; i++)  {
-	                informacion += registro.fieldName(i) + ":";  // Devuelve el nombre del campo
-	                informacion += registro.value(i).toString() + " - ";
+	            for ( int i = 0 ; i < campos ; i++ )  {
+	                informacion += registro.fieldName( i ) + ":";  // Devuelve el nombre del campo
+	                informacion += registro.value( i ).toString() + " - ";
 	            }
 	            qDebug() << informacion;
 	        }
