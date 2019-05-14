@@ -188,10 +188,10 @@ Registrar eventos (logs)
 
 .. code-block:: c
 
-	bool AdminDB::insertLog(QString log)  {
-	    QSqlQuery query(db);
+	bool AdminDB::insertLog( QString log )  {
+	    QSqlQuery query( db );
 
-	    return query.exec("INSERT INTO logs (evento) VALUES ('" + log + "')");
+	    return query.exec( "INSERT INTO logs (evento) VALUES ('" + log + "')" );
 	}
 
 
@@ -209,13 +209,13 @@ Registrar eventos (logs)
 	{
 	    Q_OBJECT
 	public:
-	    explicit AdminDB(QObject *parent = 0);
+	    explicit AdminDB( QObject *parent = 0 );
 	    ~AdminDB();
 
-	    bool conectar(QString archivoSqlite);
+	    bool conectar( QString archivoSqlite );
 	    QSqlDatabase getDB();
 	    bool isConnected();
-	    void mostrarTabla(QString tabla);
+	    void mostrarTabla( QString tabla );
 
 	private:
 	    QSqlDatabase db;
