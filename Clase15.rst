@@ -6,7 +6,7 @@ Clase 15 - POO 2019
 ===================
 (Fecha: 8 de mayo)
 
-:Tarea para Clase 16:
+:Para Clase 16:
 	Se tomará un mini examen en computadora para resolver en 30 minutos
 
 	Se pedirá un programa con un login que valide usuario con la base de datos
