@@ -137,6 +137,45 @@ Consulta a la base de datos
 
 **Ejercicio 10**
 
+- En el pizarrón se escribió el siguiente método para la clase AdminDB.
+- Se pide implementarlo en un proyyecto que tenga un login y valide los usuarios contra la base de datos.
+- La clave debe estar en MD5.
+- Hacer los cambios necesarios en este método para su funcionalidad correcta.
+
+.. code-block:: c	
+	
+	/**
+	 * Si el usuario y clave son crrectas, este metodo devuelve el nombre y 
+	 * apellido en un QStringList.	           
+	 */
+	QStringList AdminDB::validarUsuario( QString tabla,	QString usuario, QString clave )  {
+
+	    QStringList datosPersonales;
+
+	    if ( ! db.isOpen() ) 
+	        return datosPersonales;
+
+	    QSqlQuery * query = new QSqlQuery( db );
+	    QString claveMd5 = QCryptographicHash::hash( claveMd5.toUtf8(),	QCryptographicHash::Md5 ).toHex();
+
+	    query->exec( "SELECT nombre, apellido FROM " +
+	                 tabla + " WHERE usuario = '" + usuario +
+	                 "' AND clave = '" + claveMd5 + "'" );
+	
+	    while( query->next() )  {
+	        QSqlRecord registro = query->record();
+	        
+	        datosPersonales << query->value( registro.indexOf( "nombre" ).toString() );
+	        datosPersonales << query->value( registro.indexOf( "apellido" ).toString() );
+	    }
+
+	    return datosPersonales;
+	} 
+
+
+
+**Ejercicio 11**
+
 - Crear el siguiente método dentro de la clase AdminDB:
 
 .. code-block:: c	
@@ -152,106 +191,4 @@ Consulta a la base de datos
 	 */
 	QVector<QStringList> select(QString comando); 
 
-
-	
-Funciones virtuales
-^^^^^^^^^^^^^^^^^^^
-
-- Puede ser interesante llamar a la función de la derivada (en polimorfismo).
-- Al declarar una función como virtual en la clase base, si se superpone en la derivada, al invocar usando el puntero a la clase base, se ejecuta la versión de la derivada.
-
-.. code-block:: c
-
-	class Persona  {
-	public:
-	    Persona(QString nombre) : nombre(nombre)  {  }
-	    virtual QString verNombre()  {  return "Persona: " + nombre;  }  // Y si no fuera virtual?
-
-	protected:  
-	    QString nombre;
-	};
-
-	class Empleado : public Persona  {
-	public:
-	    Empleado(QString nombre) : Persona(nombre)  {  }
-	    QString verNombre()  {  return "Empleado: " + nombre;  }
-	};
-
-
-	#include <QApplication>
-	#include "personal.h"
-	#include <QDebug>
-
-	int main(int argc, char** argv)  {
-	    QApplication a(argc, argv);
-
-	    {
-	    Persona *carlos = new Empleado("Carlos");
-
-	    qDebug() << carlos->verNombre();  // Qué publica?
-
-	    delete carlos;
-	    }
-
-	    return a.exec();
-	}
-
-
-
-
-Función virtual pura y clase abstracta
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- No necesita ser definida, sólo se declara.
-- Será definida en las clases derivadas
-
-.. code-block:: c
-
-	virtual void verValor(int a) = 0;
-
-- Algunos pueden decir que no es muy elegante igualar a cero una función:
-
-.. code-block:: c
-
-	#define abstracta =0
-
-	// entonces podemos usar:
-	virtual void verValor(int a) abstracta;
-
-- Una clase con al menos una función virtual pura la convierte en clase abstracta.
-- Una clase abstracta no puede ser instanciada.
-- Si en la clase derivada no se define la función virtual pura, significa que esta clase derivada también es abstracta.
-
-.. code-block:: c
-
-	#define abstracta =0
-
-	class Persona  {
-	public:
-	    Persona(QString nombre) : nombre(nombre)  {  }
-	    virtual QString verNombre() abstracta;
-
-	protected:  
-	    QString nombre;
-	};
-
-	class Empleado : public Persona  {
-	public:
-	    Empleado(QString nombre) : Persona(nombre)  {  }
-	    QString verNombre()  {  return "Empleado: " + nombre;  }
-	};
-
-	int main(int argc, char** argv)  {
-	    QApplication a(argc, argv);
-
-	    {
-	    Persona *carlos = new Empleado("Carlos");
-
-	    qDebug() << carlos->verNombre();
-
-	    delete carlos;
-	    }
-
-	    return a.exec();
-	}
 
