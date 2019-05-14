@@ -27,7 +27,7 @@ Funciones virtuales
 
 	class Persona  {
 	public:
-	    Persona(QString nombre) : nombre(nombre)  {  }
+	    Persona( QString nombre ) : nombre( nombre )  {  }
 	    virtual QString verNombre()  {  return "Persona: " + nombre;  }  // Y si no fuera virtual?
 
 	protected:  
@@ -36,7 +36,7 @@ Funciones virtuales
 
 	class Empleado : public Persona  {
 	public:
-	    Empleado(QString nombre) : Persona(nombre)  {  }
+	    Empleado( QString nombre ) : Persona( nombre )  {  }
 	    QString verNombre()  {  return "Empleado: " + nombre;  }
 	};
 
@@ -45,11 +45,11 @@ Funciones virtuales
 	#include "personal.h"
 	#include <QDebug>
 
-	int main(int argc, char** argv)  {
-	    QApplication a(argc, argv);
+	int main( int argc, char** argv )  {
+	    QApplication a( argc, argv) ;
 
 	    {
-	    Persona *carlos = new Empleado("Carlos");
+	    Persona *carlos = new Empleado( "Carlos" );
 
 	    qDebug() << carlos->verNombre();  // Qué publica?
 
@@ -70,7 +70,7 @@ Función virtual pura y clase abstracta
 
 .. code-block:: c
 
-	virtual void verValor(int a) = 0;
+	virtual void verValor( int a ) = 0;
 
 - Algunos pueden decir que no es muy elegante igualar a cero una función:
 
@@ -79,7 +79,7 @@ Función virtual pura y clase abstracta
 	#define abstracta =0
 
 	// entonces podemos usar:
-	virtual void verValor(int a) abstracta;
+	virtual void verValor( int a ) abstracta;
 
 - Una clase con al menos una función virtual pura la convierte en clase abstracta.
 - Una clase abstracta no puede ser instanciada.
@@ -91,7 +91,7 @@ Función virtual pura y clase abstracta
 
 	class Persona  {
 	public:
-	    Persona(QString nombre) : nombre(nombre)  {  }
+	    Persona( QString nombre ) : nombre( nombre )  {  }
 	    virtual QString verNombre() abstracta;
 
 	protected:  
@@ -100,15 +100,15 @@ Función virtual pura y clase abstracta
 
 	class Empleado : public Persona  {
 	public:
-	    Empleado(QString nombre) : Persona(nombre)  {  }
+	    Empleado( QString nombre ) : Persona( nombre )  {  }
 	    QString verNombre()  {  return "Empleado: " + nombre;  }
 	};
 
-	int main(int argc, char** argv)  {
-	    QApplication a(argc, argv);
+	int main( int argc, char** argv )  {
+	    QApplication a( argc, argv );
 
 	    {
-	    Persona *carlos = new Empleado("Carlos");
+	    Persona * carlos = new Empleado( "Carlos" );
 
 	    qDebug() << carlos->verNombre();
 
