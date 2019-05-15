@@ -4,9 +4,9 @@
 
 Clase 15 - POO 2019
 ===================
-(Fecha: 8 de mayo)
+(Fecha: 15 de mayo)
 
-:Tarea para Clase 16:
+:Tarea para Clase 17:
 	Se tomará un mini examen en computadora para resolver en 30 minutos
 
 	Traer un programa con un login que valide usuario con la base de datos
@@ -120,7 +120,6 @@ Función virtual pura y clase abstracta
 
 
 
-
 **Ejercicio 12**
 
 - Diseñar una aplicación para una galería de fotos
@@ -188,10 +187,15 @@ Registrar eventos (logs)
 
 .. code-block:: c
 
-	bool AdminDB::insertLog( QString log )  {
+	bool AdminDB::registrar( QString evento )  {
 	    QSqlQuery query( db );
 
-	    return query.exec( "INSERT INTO logs (evento) VALUES ('" + log + "')" );
+	    bool exito = query.exec( "INSERT INTO registos (evento) VALUES ('" + evento + "')" );
+
+	    qDebug() << query.lastQuery();
+	    qDebug() << query.lastError();  // Devuelve un objeto de QSqlError
+
+	    return exito;
 	}
 
 
