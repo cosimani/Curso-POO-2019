@@ -134,6 +134,53 @@ Consulta a la base de datos
 	}
 
 
+Clase QCryptographicHash
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Provee la generación de la clave hash 
+- Soporta MD5, MD4 y SHA-1
+
+.. code-block:: c
+
+	enum Algorithm { Md4, Md5, Sha1 }
+
+	QCryptographicHash(Algorithm metodo)
+
+	void addData(const QByteArray & data)
+	
+	void reset()
+
+	QByteArray result() const
+
+
+**Método estático**
+
+.. code-block:: c
+
+	QByteArray hash( const QByteArray & data, Algorithm metodo )
+
+
+**Otros métodos útiles**
+
+.. code-block:: c
+
+	QByteArray QByteArray::toHex()
+	// Devuelve en hexadecimal
+	// Útil para enviar por url una clave hash MD5
+	// Hexadecimal tiene sólo caracteres válidos para URL
+
+**Ejemplo**: Obtener MD5 de la clave ingresada en un QlineEdit:
+
+.. code-block:: c
+
+	QcryptographicHash::hash( leClave->text().toUtf8(), QCryptographicHash::Md5 ).toHex()
+	
+
+
+**Calculadora MD5 online**
+
+http://md5calculator.chromefans.org/?langid=es
+
 
 **Ejercicio 10**
 
