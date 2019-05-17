@@ -17,9 +17,9 @@ Uso de Qt Designer
 
 .. code-block:: c	
 
-	virtual void mousePressEvent(QMouseEvent* event);
-	virtual void resizeEvent(QResizeEvent* event);
-	virtual void moveEvent(QMoveEvent* event);
+	virtual void mousePressEvent( QMouseEvent * event );
+	virtual void resizeEvent( QResizeEvent * event );
+	virtual void moveEvent( QMoveEvent * event );
 	...
 
 **Ejemplo**
@@ -40,7 +40,7 @@ Uso de Qt Designer
 	    Q_OBJECT
 
 	public:
-	    explicit Ventana(QWidget *parent = 0);
+	    explicit Ventana( QWidget * parent = 0 );
 	    ~Ventana();
 
 	private:
@@ -55,8 +55,8 @@ Uso de Qt Designer
 	#include "ventana.h"
 	#include "ui_ventana.h"
 
-	Ventana::Ventana(QWidget *parent) : QWidget(parent), ui(new Ui::Ventana)  {
-	    ui->setupUi(this);
+	Ventana::Ventana( QWidget * parent ) : QWidget( parent ), ui( new Ui::Ventana )  {
+	    ui->setupUi( this );
 	}
 
 	Ventana::~Ventana()  {
@@ -77,9 +77,9 @@ Clase QTimer
 
 .. code-block:: c
 
-	QTimer *timer = new QTimer(this);
-	connect(timer, SIGNAL(timeout()), this, SLOT(slot_update()));
-	timer->start(1000);
+	QTimer * timer = new QTimer( this );
+	connect( timer, SIGNAL( timeout() ), this, SLOT( slot_update() ) );
+	timer->start( 1000 );
  
 
 **Para una sola ejecución**
@@ -93,7 +93,7 @@ Clase QTimer
 
 .. code-block:: c
 
-	QTimer::singleShot(200, this, SLOT(slot_update()));
+	QTimer::singleShot( 200, this, SLOT( slot_update() ) );
 	// donde this es el objeto que tiene definido el slot_update().
 	
 
@@ -106,13 +106,13 @@ Métodos virtuales de QWidget para capturar eventos
 
 .. code-block:: c
 
-	virtual void mouseDoubleClickEvent(QMouseEvent* event);
-	virtual void mouseMoveEvent(QMouseEvent* event);
-	virtual void mousePressEvent(QMouseEvent* event);
-	virtual void keyPressEvent(QKeyEvent* event);
-	virtual void resizeEvent(QResizeEvent* event);
-	virtual void moveEvent(QMoveEvent* event);
-	virtual void closeEvent(QCloseEvent* event);
+	virtual void mouseDoubleClickEvent( QMouseEvent * event );
+	virtual void mouseMoveEvent( QMouseEvent * event );
+	virtual void mousePressEvent( QMouseEvent * event );
+	virtual void keyPressEvent( QKeyEvent * event );
+	virtual void resizeEvent( QResizeEvent * event );
+	virtual void moveEvent( QMoveEvent * event );
+	virtual void closeEvent( QCloseEvent * event );
 
 
 - Estos métodos pueden ser reimplementados en una clase derivada para recibir los eventos.
@@ -136,7 +136,7 @@ Clase QFileDialog
 
 .. code-block:: c	
 
-	QString file = QFileDialog::getOpenFileName(this, "Abrir", "./", "Imagen (*.png *.jpg)");
+	QString file = QFileDialog::getOpenFileName( this, "Abrir", "./", "Imagen (*.png *.jpg)" );
 
 **Ejercicio 13**
 
