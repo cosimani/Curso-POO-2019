@@ -160,15 +160,15 @@ Señales propias
 .. code-block:: c	
 
 	int i = 5;
-	emit signal_enviarEntero(i);
+	emit signal_enviarEntero( i );
 
 
-- La función ``enviarEntero(int a)`` debe estar declarada con el modificador de acceso ``signals``
+- La función ``enviarEntero( int a )`` debe estar declarada con el modificador de acceso ``signals``
 
 .. code-block:: c	
 
 	signals:
-	    void signal_enviarEntero(int);
+	    void signal_enviarEntero( int );
 
 
 - No olvidarse de la macro ``Q_OBJECT`` para permitir a esta clase usar signals y slots.
@@ -185,7 +185,7 @@ Señales propias
 **Ejercicio 16** 
 
 - Incorporar a un Login una señal que se emita cada vez que un usuario se valide exitosamente
-- Que la señal se llame ``void signal_usuarioLogueado(QString)``
+- Que la señal se llame ``void signal_usuarioLogueado( QString )``
 - El QString que envía es el nombre de usuario
 
 
