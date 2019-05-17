@@ -4,7 +4,7 @@
 
 Clase 15 - POO 2019
 ===================
-(Fecha: 15 de mayo)
+(Fecha: 14 de mayo)
 
 :Tarea para Clase 17:
 	Se tomará un mini examen en computadora para resolver en 30 minutos

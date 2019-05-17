@@ -2,30 +2,9 @@
 
 .. _rcs_subversion:
 
-Clase 16 - POO 2018 (No preparado aún)
+Clase 16 - POO 2019
 ===================
-(Fecha: 14 de mayo)
-
-
-
-**Google Maps**
-
-- URL para su uso: https://developers.google.com/maps/documentation/staticmaps
-- Ejemplo: http://maps.googleapis.com/maps/api/staticmap?center=rondeau+100+cordoba&zoom=15&size=500x300&maptype=roadmap&sensor=false
-- Descripción de los parámetros en: https://developers.google.com/maps/documentation/staticmaps/#URL_Parameters
-- Pueden habilitar otros servicios en https://code.google.com/apis/console
-
-
-**Ejercicio 12** 
-
-- Hacer una aplicación para buscar una dirección en Google Maps
-- Definir la clase Mapa. Será el QWidget donde se dibujará el mapa de google.
-- Definir la clase Ventana para contener al layout.
-- Ese layout tendrá:
-	- QLineEdit para ingresar un domicilio
-	- QPushButton para buscar ese domicilio
-	- Mapa
-	- QSlider vertical para aumentar y disminuir el zoom
+(Fecha: 17 de mayo)
 
 
 
@@ -85,15 +64,92 @@ Uso de Qt Designer
 	}
 
 
+Clase QTimer
+^^^^^^^^^^^^
 
-Un par de memes antes del examen
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. figure:: images/clase10/meme2.jpg
-
-.. figure:: images/clase10/meme4.jpg
+- Permite programar tareas de una sola ejecución o tareas repetitivas. 
+- Conectamos la señal ``timeout()`` con algún slot.
+- Con ``start()`` comenzamos y la señal ``timeout()`` se emitirá al terminar.
 
 
+**Ejemplo (repetitivo):** Temporizador que cada 1000 mseg llamará a ``slot_update()``
+
+
+.. code-block:: c
+
+	QTimer *timer = new QTimer(this);
+	connect(timer, SIGNAL(timeout()), this, SLOT(slot_update()));
+	timer->start(1000);
+ 
+
+**Para una sola ejecución**
+
+- Para temporizador de una sola ejecución usar ``setSingleShot(true)``
+- El método estático ``QTimer::singleShot()`` nos permite la ejecución.
+
+
+**Ejemplo:** Luego de 200 mseg se llamará a ``slot_update()``:
+
+
+.. code-block:: c
+
+	QTimer::singleShot(200, this, SLOT(slot_update()));
+	// donde this es el objeto que tiene definido el slot_update().
+	
+
+
+Métodos virtuales de QWidget para capturar eventos
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Algunos de ellos:
+
+
+.. code-block:: c
+
+	virtual void mouseDoubleClickEvent(QMouseEvent* event);
+	virtual void mouseMoveEvent(QMouseEvent* event);
+	virtual void mousePressEvent(QMouseEvent* event);
+	virtual void keyPressEvent(QKeyEvent* event);
+	virtual void resizeEvent(QResizeEvent* event);
+	virtual void moveEvent(QMoveEvent* event);
+	virtual void closeEvent(QCloseEvent* event);
+
+
+- Estos métodos pueden ser reimplementados en una clase derivada para recibir los eventos.
+
+**Ejercicio 12**
+
+- Usar QtDesigner
+- Definir la clase Ventana que herede de QWidget
+- Buscar una imagen de un fútbol con formato PNG (para usar transparencias).
+- Ventana tendrá un formulario que pide al usuario:
+	- Diámetro del fútbol (píxeles):
+	- Velocidad (mseg para ir de lado a lado):
+	- QPushButton para actualizar el estado.
+- El fútbol irá golpeando de izquierda a derecha en Ventana.
+
+
+Clase QFileDialog
+^^^^^^^^^^^^^^^^^
+
+- Permite abrir un cuadro de diálogo para buscar un archivo en disco
+
+.. code-block:: c	
+
+	QString file = QFileDialog::getOpenFileName(this, "Abrir", "./", "Imagen (*.png *.jpg)");
+
+**Ejercicio 13**
+
+- Elegir un archivo de imagen del disco con ``QFileDialog`` y dibujarlo en un ``QWidget``.
+- Agregar un botón "Iniciar rotación" que genere la rotación de la imagen sobre su centro.
+
+
+**Ejercicio 14** Al ingresar la URL de una imagen deberá mostrarla como en la figura
+
+.. figure:: images/clase10/imagenes.png  
+ 
+- Al hacer clic sobre una de estas imágenes, deberá ocultarse la misma. 
+- Cuando se oculta la segunda imagen, cerrar la aplicación.
 
 
 

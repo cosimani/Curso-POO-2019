@@ -30,7 +30,7 @@ Clase QCryptographicHash
 
 .. code-block:: c
 
-	QByteArray hash(const QByteArray & data, Algorithm metodo)
+	QByteArray hash( const QByteArray & data, Algorithm metodo )
 
 
 **Otros métodos útiles**
@@ -46,7 +46,7 @@ Clase QCryptographicHash
 
 .. code-block:: c
 
-	QcryptographicHash::hash(leClave->text().toUtf8(), QCryptographicHash::Md5).toHex()
+	QcryptographicHash::hash( leClave->text().toUtf8(), QCryptographicHash::Md5 ).toHex()
 	
 
 
@@ -63,29 +63,6 @@ http://md5calculator.chromefans.org/?langid=es
 - Registrar en la tabla 'logs' los intentos fallidos de logueo
 
 
-
-
-Clase QFileDialog
-^^^^^^^^^^^^^^^^^
-
-- Permite abrir un cuadro de diálogo para buscar un archivo en disco
-
-.. code-block:: c	
-
-	QString file = QFileDialog::getOpenFileName(this, "Abrir", "./", "Imagen (*.png *.jpg)");
-
-**Ejercicio 14**
-
-- Elegir un archivo de imagen del disco con ``QFileDialog`` y dibujarlo en un ``QWidget``.
-- Agregar un botón "Iniciar rotación" que genere la rotación de la imagen sobre su centro.
-
-
-**Ejercicio 15** Al ingresar la URL de una imagen deberá mostrarla como en la figura
-
-.. figure:: images/clase10/imagenes.png  
- 
-- Al hacer clic sobre una de estas imágenes, deberá ocultarse la misma. 
-- Cuando se oculta la segunda imagen, cerrar la aplicación.
 
 
 Creando Instalador
