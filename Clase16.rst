@@ -117,7 +117,7 @@ Métodos virtuales de QWidget para capturar eventos
 
 - Estos métodos pueden ser reimplementados en una clase derivada para recibir los eventos.
 
-**Ejercicio 12**
+**Ejercicio 13**
 
 - Usar QtDesigner
 - Definir la clase Ventana que herede de QWidget
@@ -138,55 +138,19 @@ Clase QFileDialog
 
 	QString file = QFileDialog::getOpenFileName( this, "Abrir", "./", "Imagen (*.png *.jpg)" );
 
-**Ejercicio 13**
+**Ejercicio 14**
 
 - Elegir un archivo de imagen del disco con ``QFileDialog`` y dibujarlo en un ``QWidget``.
 - Agregar un botón "Iniciar rotación" que genere la rotación de la imagen sobre su centro.
 
 
-**Ejercicio 14** Al ingresar la URL de una imagen deberá mostrarla como en la figura
+**Ejercicio 15** Al ingresar la URL de una imagen deberá mostrarla como en la figura
 
 .. figure:: images/clase10/imagenes.png  
  
 - Al hacer clic sobre una de estas imágenes, deberá ocultarse la misma. 
 - Cuando se oculta la segunda imagen, cerrar la aplicación.
 
-
-Señales propias
-^^^^^^^^^^^^^^^
-
-- Si necesitamos enviar una señal se utiliza la palabra reservada ``emit``.
-
-.. code-block:: c	
-
-	int i = 5;
-	emit signal_enviarEntero( i );
-
-
-- La función ``enviarEntero( int a )`` debe estar declarada con el modificador de acceso ``signals``
-
-.. code-block:: c	
-
-	signals:
-	    void signal_enviarEntero( int );
-
-
-- No olvidarse de la macro ``Q_OBJECT`` para permitir a esta clase usar signals y slots.
-- Las signals deben ser compatibles en sus parámetros con los slots a los cuales se conecten.
-- Solamente se declara esta función (Qt se encarga de definirla).
-
-
-**Ejercicio 15** 
-
-- Crear un login con un QLabel que funcione como un QPushButton
-- Para esto incorporar al QLabel la señal ``void signal_clic()``
-
-
-**Ejercicio 16** 
-
-- Incorporar a un Login una señal que se emita cada vez que un usuario se valide exitosamente
-- Que la señal se llame ``void signal_usuarioLogueado( QString )``
-- El QString que envía es el nombre de usuario
 
 
 
