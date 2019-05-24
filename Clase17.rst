@@ -73,9 +73,9 @@ Uso de una clase propia con QtDesigner
 
 .. code-block::
 
-	MiLabel(QWidget *parent = 0);  // Esto en miLabel.h
+	MiLabel( QWidget * parent = 0 );  // Esto en miLabel.h
 
-	MiLabel::MiLabel(QWidget *parent) : QLabel(parent)  {  // Esto en miLabel.cpp
+	MiLabel::MiLabel( QWidget * parent ) : QLabel( parent )  {  // Esto en miLabel.cpp
 	
 	}
 
@@ -89,7 +89,7 @@ Uso de una clase propia con QtDesigner
 
 .. code-block::
 
-	ui->tuLabel->cambiarTexto("Sos un TuLabel?");
+	ui->tuLabel->cambiarTexto( "Sos un TuLabel?" );
 
 
 **Ejercicio 20** 
