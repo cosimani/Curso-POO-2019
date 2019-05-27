@@ -2,51 +2,182 @@
 
 .. _rcs_subversion:
 
-Clase 18 - POO 2018 (No preparado aún)
+Clase 18 - POO 2019
 ===================
-(Fecha: 21 de mayo)
+(Fecha: 28 de mayo)
+
+
+Uso de una clase propia con QtDesigner
+======================================
+
+- Deben heredar de algún QWidget
+- Colocamos el widget (clase base) con QtDesigner
+- Clic derecho "Promote to"
+
+.. figure:: images/clase18/qtdesigner.png
+					 
+- Base class name: QLabel
+- Promoted class name: MiLabel
+- Header file: miLabel.h
+- Add (y con esto queda disponible para promover)
+- La clase MiLabel deberá heredar de QLabel
+- El constructor debe tener como parámetro:
+
+
+.. code-block::
+
+	MiLabel( QWidget * parent = 0 );  // Esto en miLabel.h
+
+	MiLabel::MiLabel( QWidget * parent ) : QLabel( parent )  {  // Esto en miLabel.cpp
+	
+	}
+
+
+**Ejercicio 19**
+
+- Definir la clase TuLabel que herede de QLabel
+- Agregar un QLabel a la GUI y promoverlo a TuLabel
+- Agregar un método void cambiarTexto(QString nuevoTexto)
+- Usar ese método desde la clase Principal de la siguiente forma:
+
+.. code-block::
+
+	ui->tuLabel->cambiarTexto( "Sos un TuLabel?" );
+
+
+**Ejercicio 20** 
+
+- Crear un login con la clase TuLabel que herede de QLabel y que funcione como un QPushButton
+- Para esto incorporar a TuLabel la señal ``void signal_clic()``
 
 
 
 
+Creando Instalador
+^^^^^^^^^^^^^^^^^^
+
+**Mexican explanation**
+
+|ImageLink|_ 
+
+.. |ImageLink| image:: /images/clase14/mexicano.gif
+.. _ImageLink: https://www.youtube.com/watch?v=rr6G7GU52Wc
+
+**Capturas de pantalla de la creación**
+
+.. figure:: images/clase14/CrearInstalador.gif
+
+
+**Ejercicio 21**
+
+- Diseñar una aplicación que muestre en un ``QWidget`` cualquier imagen de 50x50
+- La imagen deberá seguir al puntero del mouse cuando esté presionado un botón.
+- Utilizar ``QTimer`` para actualizar la posición de la imagen dando un efecto inercial
+
+
+Ejecutable del ejercicio de arrastrar y soltar la imagen
+........................................................
+
+- `Descargar Instalador de MouseMove (Windows 7 o superior - 64 bits) <https://drive.google.com/file/d/0B3bNJFNPgLHnc3ota21TVVBKb0k/view?usp=sharing>`_
+
+- `Descargar MouseMove (Linux - 64 bits) <https://drive.google.com/file/d/0B3bNJFNPgLHnMGtzWjlQa3RIc1E/view?usp=sharing>`_
 
 
 
-Primer Parcial
-^^^^^^^^^^^^^^
+
+const
+^^^^^
+
+- Una variable definida como const no podrá ser modificada a lo largo del programa (se crea como sólo lectura)
+- Se puede aplicar a cualquier tipo:
+
+.. code-block:: c	
+
+	const float pi = 3.14;
+	const peso = 67;  // Si no se indica el tipo entonces es int
+	                  // Aunque sólo en compiladores viejos
 
 
 
+const con punteros
+^^^^^^^^^^^^^^^^^^
 
-**Google Maps**
+.. code-block:: c	
 
-- URL para su uso: https://developers.google.com/maps/documentation/staticmaps
-- Ejemplo: http://maps.googleapis.com/maps/api/staticmap?center=rondeau+100+cordoba&zoom=15&size=500x300&maptype=roadmap&sensor=false
-- Descripción de los parámetros en: https://developers.google.com/maps/documentation/staticmaps/#URL_Parameters
-- Pueden habilitar otros servicios en https://code.google.com/apis/console
+	int x = 10;
+	int* px = &x;  // normal
 
+	const int y = 10;
+	int* py = &y;  // El compilador dirá: "invalid conversion from const int*
+	               // to int*". La inversa sí se permite
 
-**Ejercicio 12** 
+	int y = 10;
+	const int* py = &y;  // permitido (pero el contenido es de sólo lectura)
 
-- Hacer una aplicación para buscar una dirección en Google Maps
-- Definir la clase Mapa. Será el QWidget donde se dibujará el mapa de google.
-- Definir la clase Ventana para contener al layout.
-- Ese layout tendrá:
-	- QLineEdit para ingresar un domicilio
-	- QPushButton para buscar ese domicilio
-	- Mapa
-	- QSlider vertical para aumentar y disminuir el zoom
+	*py = 6;  // No permitido. El contenido apuntado es de sólo lectura
 
 
-
-
-
-Un par de memes antes del examen
+const en parámetros de funciones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: images/clase10/meme2.jpg
+- Cuando los parámetros son punteros, decimos que no podrá modificar los objetos referenciados
 
-.. figure:: images/clase10/meme4.jpg
+.. code-block:: c	
+
+	int funcion(const char* ch)
+
+
+- Lo mismo sucede con referencias
+
+.. code-block:: c	
+
+	int funcion(const char& ch)
+
+
+const en clases
+^^^^^^^^^^^^^^^
+
+.. code-block:: c	
+
+	class ClaseA  {
+	    const int i;
+	    int x;
+
+	public:
+	    int funcion(ClaseA cA, const ClaseA &c)  {
+	        cA.x = 1;
+	        cA.i = 2;  // No compila. i es de sólo lectura.
+	        c.x = 3;  // No compila. El objeto c es de sólo lectura.
+
+	        return cA.x;
+	    }
+	}; 
+
+
+.. code-block:: c	
+
+	// A la variable i sólo la puede inicializar el constructor y sólo con la forma:
+	ClaseA() : i(8)  {  }   
+
+	// Si en el cuerpo del constructor se hace:
+	ClaseA()   { 
+	    i = 8;  // Compila? i es de solo lectura o no
+	}   
+
+
+- Aplicado a métodos de una clase no permite modificar ninguna propiedad de la clase
+
+.. code-block:: c	
+
+	class ClaseB  {
+	    int x;
+
+	    void funcion(int i) const  {
+	        x = x + i;  // Compila?
+	    }
+	};
+
+
 
 
 

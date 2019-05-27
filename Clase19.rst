@@ -13,34 +13,42 @@ Clase 19 - POO 2018 (No preparado aún)
 
 
 
-Creando Instalador
-^^^^^^^^^^^^^^^^^^
-
-**Mexican explanation**
-
-|ImageLink|_ 
-
-.. |ImageLink| image:: /images/clase14/mexicano.gif
-.. _ImageLink: https://www.youtube.com/watch?v=rr6G7GU52Wc
-
-**Capturas de pantalla de la creación**
-
-.. figure:: images/clase14/CrearInstalador.gif
+Primer Parcial
+^^^^^^^^^^^^^^
 
 
-**Ejercicio 16**
-
-- Diseñar una aplicación que muestre en un ``QWidget`` cualquier imagen de 50x50
-- La imagen deberá seguir al puntero del mouse cuando esté presionado un botón.
-- Utilizar ``QTimer`` para actualizar la posición de la imagen dando un efecto inercial
 
 
-Ejecutable del ejercicio de arrastrar y soltar la imagen
-........................................................
+**Google Maps**
 
-- `Descargar Instalador de MouseMove (Windows 7 o superior - 64 bits) <https://drive.google.com/file/d/0B3bNJFNPgLHnc3ota21TVVBKb0k/view?usp=sharing>`_
+- URL para su uso: https://developers.google.com/maps/documentation/staticmaps
+- Ejemplo: http://maps.googleapis.com/maps/api/staticmap?center=rondeau+100+cordoba&zoom=15&size=500x300&maptype=roadmap&sensor=false
+- Descripción de los parámetros en: https://developers.google.com/maps/documentation/staticmaps/#URL_Parameters
+- Pueden habilitar otros servicios en https://code.google.com/apis/console
 
-- `Descargar MouseMove (Linux - 64 bits) <https://drive.google.com/file/d/0B3bNJFNPgLHnMGtzWjlQa3RIc1E/view?usp=sharing>`_
+
+**Ejercicio 12** 
+
+- Hacer una aplicación para buscar una dirección en Google Maps
+- Definir la clase Mapa. Será el QWidget donde se dibujará el mapa de google.
+- Definir la clase Ventana para contener al layout.
+- Ese layout tendrá:
+	- QLineEdit para ingresar un domicilio
+	- QPushButton para buscar ese domicilio
+	- Mapa
+	- QSlider vertical para aumentar y disminuir el zoom
+
+
+
+
+
+Un par de memes antes del examen
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. figure:: images/clase10/meme2.jpg
+
+.. figure:: images/clase10/meme4.jpg
+
 
 
 
