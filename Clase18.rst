@@ -112,7 +112,7 @@ const con punteros
 	               // to int*". La inversa sí se permite
 
 	int y = 10;
-	const int* py = &y;  // permitido (pero el contenido es de sólo lectura)
+	const int * py = &y;  // permitido (pero el contenido es de sólo lectura)
 
 	*py = 6;  // No permitido. El contenido apuntado es de sólo lectura
 
@@ -124,14 +124,14 @@ const en parámetros de funciones
 
 .. code-block:: c	
 
-	int funcion(const char* ch)
+	int funcion( const char * ch )
 
 
 - Lo mismo sucede con referencias
 
 .. code-block:: c	
 
-	int funcion(const char& ch)
+	int funcion( const char& ch )
 
 
 const en clases
@@ -144,7 +144,7 @@ const en clases
 	    int x;
 
 	public:
-	    int funcion(ClaseA cA, const ClaseA &c)  {
+	    int funcion( ClaseA cA, const ClaseA &c )  {
 	        cA.x = 1;
 	        cA.i = 2;  // No compila. i es de sólo lectura.
 	        c.x = 3;  // No compila. El objeto c es de sólo lectura.
@@ -157,10 +157,10 @@ const en clases
 .. code-block:: c	
 
 	// A la variable i sólo la puede inicializar el constructor y sólo con la forma:
-	ClaseA() : i(8)  {  }   
+	ClaseA() : i( 8 )  {  }   
 
 	// Si en el cuerpo del constructor se hace:
-	ClaseA()   { 
+	ClaseA()  { 
 	    i = 8;  // Compila? i es de solo lectura o no
 	}   
 
@@ -172,7 +172,7 @@ const en clases
 	class ClaseB  {
 	    int x;
 
-	    void funcion(int i) const  {
+	    void funcion( int i ) const  {
 	        x = x + i;  // Compila?
 	    }
 	};
