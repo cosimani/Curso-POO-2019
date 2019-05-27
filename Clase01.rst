@@ -13,7 +13,7 @@ Clase 01 - POO 2019
 	    - 2 parciales 
 	    - Parcialitos, ejercicios y cuestionarios (3er nota)
 	    - Los ejericios son algunos de los que están en las clases
-	    - Los ejercicios se aprueban (7) o no aprueban (0), o puede ser sobresaliente (10).
+	    - Los ejercicios, si están como pide el enunciado se tiene un 8, para llegar al 10 tiene que ser sobresaliente.
 	    - Cumplir los siguientes requisitos
     :Requisitos: 
 	    - Nivel 5 o más en SoloLearn (para C++)
