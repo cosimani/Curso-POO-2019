@@ -98,18 +98,17 @@ Herencia múltiple
 
 	    return 0;
 	}
-	
+
 
 **Ejercicio 24**
  
-.. figure:: images/clase15/ejercicio.jpg 
-
 - Crear un proyecto Qt Widget Application con el QWidget principal en la clase Ventana
 - Crear una clase Boton que hereda de QWidget
 - Redefinir paintEvent en Boton y usar fillRect para dibujarlo de algún color
 - Definir el siguiente método en Boton:
 
 .. code-block:: c
+
 	Boton * boton = new Boton;
 	boton->colorear( Boton::Azul );
 
