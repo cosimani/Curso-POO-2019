@@ -41,7 +41,7 @@ Enumeraciones
 	    int un_dia;
 	};
 
-	int main(int argc, char** argv)  {
+	int main( int argc, char ** argv )  {
 	    Dia d1;
 	    d1.un_dia = Dia::LUN;
 	}
@@ -61,7 +61,7 @@ Herencia múltiple
 
 	class ClaseA  {
 	public:
-	    ClaseA(int a) : valorA(a)  {  }
+	    ClaseA( int a ) : valorA( a )  {  }
 	    int verValor()  {  return valorA;  }
 
 	protected:
@@ -72,7 +72,7 @@ Herencia múltiple
 
 	class ClaseB  {
 	public:
-	    ClaseB() : valorB(20)  {  }
+	    ClaseB() : valorB( 20 )  {  }
 	    int verValor()  {  return valorB;  }
 
 	protected:
@@ -83,16 +83,16 @@ Herencia múltiple
 
 	class ClaseC : public ClaseA, public ClaseB  {
 	public:
-	    ClaseC(int c) : ClaseA(c), ClaseB()  {  }
+	    ClaseC( int c ) : ClaseA( c ), ClaseB()  {  }
 	    int verValor()  {  return ClaseA::verValor();  }
 	};
 
 .. code-block:: c	
 
-	int main(int argc, char** argv)  {
-	    QApplication a(argc, argv);
+	int main( int argc, char ** argv )  {
+	    QApplication a( argc, argv );
 
-	    ClaseC c(10);
+	    ClaseC c( 10 );
 	    qDebug() << c.verValor();  
 	    qDebug() << c.ClaseB::verValor();  
 
