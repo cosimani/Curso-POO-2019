@@ -31,15 +31,15 @@ Funciones inline
 	#include <QDebug>
 	#include <QApplication>
 
-	inline int calculo(int a, int b)  {
+	inline int calculo( int a, int b )  {
 	    return a/2+b;
 	}
 
-	int main(int argc, char** argv)  {
-	    QApplication a(argc, argv);
+	int main( int argc, char ** argv )  {
+	    QApplication a( argc, argv );
 
 	    int x=2, y=3, z=0;
-	    z = calculo(x, y);
+	    z = calculo( x, y );
 
 	    return 0;
 	}
@@ -62,7 +62,7 @@ Funciones inline
 	    int y;
 
 	public:
-	    ClaseA() : x(10), y(20)  {  }
+	    ClaseA() : x( 10 ), y( 20 )  {  }
 	    int getX()  {  return x;  }     // inline implícito
 	    int getY();
 	};
@@ -71,8 +71,8 @@ Funciones inline
 	    return y;
 	}
 
-	int main(int argc, char** argv)  {
-	    QApplication a(argc, argv);
+	int main( int argc, char ** argv )  {
+	    QApplication a( argc, argv );
 
 	    ClaseA cA;
 	    qDebug() << cA.getX();
@@ -116,21 +116,21 @@ Declaraciones friend
 
 	class ClaseA  {
 	public:
-	    ClaseA(int i) : a(i)  {  }
+	    ClaseA( int i ) : a( i )  {  }
 	    void verA()  {  cout << a << endl;  }
 
 	protected:
 	    int a;
-	    friend void mostrarA(ClaseA);  // mostrarA es amiga de ClaseA
+	    friend void mostrarA( ClaseA );  // mostrarA es amiga de ClaseA
 	};
 
-	void mostrarA(ClaseA cA)  {  // Esta función no pertenece a ClaseA
-	    cout << cA.a << endl;   // Pero al ser amiga puede acceder a 'a'
+	void mostrarA( ClaseA cA )  {  // Esta función no pertenece a ClaseA
+	    cout << cA.a << endl;      // Pero al ser amiga puede acceder a 'a'
 	}
 
-	int main(int argc, char** argv)  {
-	    ClaseA objetoA(10);
-	    mostrarA(objetoA);
+	int main( int argc, char ** argv )  {
+	    ClaseA objetoA( 10 );
+	    mostrarA( objetoA );
 	    objetoA.verA();
 
 	    return 0;
@@ -147,11 +147,11 @@ Declaraciones friend
 
 	class ClaseB  {
 	public:
-	    ClaseB(int i) : b(i)  {  }
+	    ClaseB( int i ) : b( i )  {  }
 		
-	    void ver()  { cout << b << endl;  }
+	    void ver()  {  cout << b << endl;  }
 		
-	    bool esMayor(ClaseA cA)  {  // Compara
+	    bool esMayor( ClaseA cA )  {  // Compara
 	        return b > cA.a;
 	    }
 		
@@ -161,22 +161,22 @@ Declaraciones friend
 
 	class ClaseA  {
 	public:
-	    ClaseA(int i) : a(i)  {  }
-	    void ver()  { cout << a << endl; }
+	    ClaseA( int i ) : a( i )  {  }
+	    void ver()  {  cout << a << endl;  }
 
 	private:
-	    friend bool ClaseB::esMayor(ClaseA);
+	    friend bool ClaseB::esMayor( ClaseA );
 	    int a;
 	};
 
-	int main(int argc, char** argv)  {
-	    ClaseA objetoA(10);
-	    ClaseB objetoB(2);
+	int main( int argc, char ** argv )  {
+	    ClaseA objetoA( 10 );
+	    ClaseB objetoB( 2 );
 
 	    objetoA.ver();	
 	    objetoB.ver();
 
-	    if (objetoB.esMayor(objetoA))
+	    if ( objetoB.esMayor( objetoA ) )
 	        cout << "objetoB > objetoA" << endl;
 	    else
 	        cout << "objetoB < objetoA" << endl;
@@ -192,33 +192,33 @@ Levantar base de datos a QTableView
 .. code-block:: c
 
 	QSqlRelationalTableModel * tableModelAlumnos;
-	tableModelAlumnos = new QSqlRelationalTableModel(this, adminDB->getDB()); 
+	tableModelAlumnos = new QSqlRelationalTableModel( this, adminDB->getDB() ); 
 
-	tableModelAlumnos->setTable("alumnos");  // Tabla de la base
+	tableModelAlumnos->setTable( "alumnos" );  // Tabla de la base
 
 	// Para modificar como una planilla de excel
-	tableModelAlumnos->setEditStrategy(QSqlTableModel::OnManualSubmit); 
+	tableModelAlumnos->setEditStrategy( QSqlTableModel::OnManualSubmit ); 
 
 	// Otra relación. En lugar de mostrar el id_carrera que muestre el nombre de la carrera.
-	tableModelAlumnos->setRelation(5, QSqlRelation("carreras", "id", "nombre"));
+	tableModelAlumnos->setRelation( 5, QSqlRelation( "carreras", "id", "nombre" ) );
 
 	tableModelAlumnos->select();  // Hace la consulta.
 
 	// Títulos de las columnas en el widget.
-	tableModelAlumnos->setHeaderData(1, Qt::Horizontal, "Legajo");
-	tableModelAlumnos->setHeaderData(2, Qt::Horizontal, "Nombre");
-	tableModelAlumnos->setHeaderData(3, Qt::Horizontal, "Apellido");
-	tableModelAlumnos->setHeaderData(4, Qt::Horizontal, "Mail");
-	tableModelAlumnos->setHeaderData(5, Qt::Horizontal, "Carrera"); 
+	tableModelAlumnos->setHeaderData( 1, Qt::Horizontal, "Legajo" );
+	tableModelAlumnos->setHeaderData( 2, Qt::Horizontal, "Nombre" );
+	tableModelAlumnos->setHeaderData( 3, Qt::Horizontal, "Apellido" );
+	tableModelAlumnos->setHeaderData( 4, Qt::Horizontal, "Mail" );
+	tableModelAlumnos->setHeaderData( 5, Qt::Horizontal, "Carrera" ); 
 
 	// Seteamos el QSqlTableModel sobre el QTableView
-	ui->tableViewAlumnos->setModel(tableModelAlumnos);
+	ui->tableViewAlumnos->setModel( tableModelAlumnos );
 
 	// Lista desplegable con el nombre de la carrera, esto cuando se modifique la celda.
-	ui->tableViewAlumnos->setItemDelegate(new QSqlRelationalDelegate(ui->tableViewAlumnos));
+	ui->tableViewAlumnos->setItemDelegate( new QSqlRelationalDelegate( ui->tableViewAlumnos ) );
 
 	// Ocultamos la columna id de la tabla alumnos.
-	ui->tableViewAlumnos->setColumnHidden(0, true);
+	ui->tableViewAlumnos->setColumnHidden( 0, true );
 
 	// Ajusta el ancho de la celda con el texto en su interior. Para todas las columnas.
 	ui->tableViewAlumnos->resizeColumnsToContents(); 
