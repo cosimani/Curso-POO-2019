@@ -42,7 +42,7 @@ Ejercitación para recuperatorio primer parcial
 	}
 	
 
-**Ejercicio 11**
+**Ejercicio**
 
 - Comenzar un proyecto vacío con QtCreator y diseñar el siguiente login de usuarios:
  
