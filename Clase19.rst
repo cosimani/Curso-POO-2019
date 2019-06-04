@@ -46,6 +46,66 @@ Enumeraciones
 	    d1.un_dia = Dia::LUN;
 	}
 
+
+**Ejemplo**
+
+.. code-block:: c	
+
+	// figura.h
+	class Figura : public QWidget  {
+	    Q_OBJECT
+
+	public:
+	    enum Forma { CIRCULO, CUADRADO };
+
+	    Figura( QWidget * parent = 0 );
+
+	    void dibujar( Forma forma );
+
+	protected:
+	    void paintEvent( QPaintEvent * );
+
+	private:
+	    Forma forma;
+	};
+
+
+	// figura.cpp
+	Figura::Figura( QWidget * parent ) : QWidget( parent ), forma( CIRCULO )  {  }
+
+	void Figura::dibujar( Forma forma )  {
+	    this->forma = forma;
+	    this->repaint();
+	}
+
+	void Figura::paintEvent( QPaintEvent * )  {
+	    QPainter pincel( this );
+	    
+	    switch( forma )  {
+	    case CIRCULO:
+	        // dibujar circulo
+	        break;
+
+	    case CUADRADO:
+	        // dibujar cuadrado
+	        break;
+
+	    default:;
+	    }
+	}
+
+	// main.cpp
+	int main( int argc, char ** argv )  {
+	    QApplication a( argc, argv );
+
+	    Figura figura;
+	    figura.dibujar( Figura::CUADRADO );
+	    figura.show();
+
+	    return a.exec();
+	}
+
+
 Herencia múltiple
 ^^^^^^^^^^^^^^^^^
 
@@ -98,6 +158,40 @@ Herencia múltiple
 
 	    return 0;
 	}
+
+
+**Ejemplo**
+
+.. code-block:: c	
+
+	class Persona  {
+	private:
+	    int edad;
+	    int x, y;
+
+	public:
+	    Persona( int edad = 0 ) : edad( edad ), x( 0 ), y( 0 )  {  }
+
+	    void move( int x, int y )  {
+	        this->x = x;
+	        this->y = y;
+	    }
+	};
+
+	class Jugador : public Persona, public QWidget  {
+	private:
+	    int id;
+
+	public:
+	    Jugador() : Persona( 18 ), QWidget(), id( 0 )  {  }
+
+	    void mudarse( int x, int y )  {
+	        this->id++;
+	        this->Persona::move( x, y );  // Se requiere especificar de esta manera
+	    }
+	};
+	    
+
 
 
 **Ejercicio 24**
