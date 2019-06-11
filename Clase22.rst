@@ -21,6 +21,7 @@ OpenGL
 - Desarrollada por Silicon Graphics Inc. (1992).
 - En 2006 pasa al Grupo Khronos
 - Compite con Direct3D de Microsoft
+- Direct3D, DirectShow, DirectSound, DirectPlay y otras, son parte de DirectX.
 
 **Para tener en cuenta**
 
