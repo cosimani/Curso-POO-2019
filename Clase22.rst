@@ -2,11 +2,9 @@
 
 .. _rcs_subversion:
 
-Clase 22 - POO 2018 (No preparado aún)
+Clase 22 - POO 2019
 ===================
 (Fecha: 11 de junio)
-
-
 
 
 Graficación 3D
@@ -49,9 +47,12 @@ OpenGL
 
 **Algunos datos**
 
-- Cuando el ojo percibe 24 cuadros por segundo, lo ve real.
+- 24 cuadros por segundo notamos es la mínima para percibirlo en movimiento fluido.
 - Mayor cantidad de imágenes se verá mejor aún.
-- Luego de 60 cuadros por segundo no se notan mejoras.
+- 24 fps y 48 fps se utiliza en el cine.
+- 60 fps para televisión de alta definición.
+- 90 fps se utilizan para realidad virtual.
+- Consolas de juegos, algunos monitores ya usan 144 fps.
 - Hay bibliotecas que aportan más funcionalidades: GLU, GLUT, GLEW, etc.
 - Las primitivas se componen de vértices (puntos en 3D).
 - Perspectiva ortonormal: 
@@ -62,7 +63,7 @@ OpenGL
 
 .. code-block:: c	
 
-	glVertex3f(10.0f, 5.0f, 3.0f);
+	glVertex3f( 10.0f, 5.0f, 3.0f );
 
 .. figure:: images/clase19/punto.png
 
@@ -73,9 +74,9 @@ Dibujando primitivas
 
 .. code-block:: c
 
-	glBegin(GL_POINTS);
-	    glVertex3f(0.0f, 0.0f, 0.0f);
-	    glVertex3f(10.0f, 10.0f, 10.0f);
+	glBegin( GL_POINTS );
+	    glVertex3f( 0.0f, 0.0f, 0.0f );
+	    glVertex3f( 10.0f, 10.0f, 10.0f );
 	glEnd();
 
 - Comienza indicando el tipo de primitiva con ``glBegin()``.
@@ -85,7 +86,7 @@ Dibujando primitivas
 
 .. code-block:: c
 
-	glPointSize(6.0f); // tamaño del pixel = 6
+	glPointSize( 6.0f ); // tamaño del pixel = 6
 
 **Líneas GL_LINES**
 
@@ -94,11 +95,11 @@ Dibujando primitivas
 	GLfloat angulo;
 	int i;
 
-	glBegin(GL_LINES);
-	for (i=0; i<360; i+=3)  {
-	    angulo = (GLfloat)i*3.14159f/180.0f; // grados a radianes
-	    glVertex3f(0.0f, 0.0f, 0.0f);
-	    glVertex3f(cos(angulo), sin(angulo), 0.0f);
+	glBegin( GL_LINES );
+	for ( i = 0; i < 360; i+=3 )  {
+	    angulo = ( GLfloat )i * 3.14159f / 180.0f; // grados a radianes
+	    glVertex3f( 0.0f, 0.0f, 0.0f );
+	    glVertex3f( cos( angulo ), sin( angulo ), 0.0f );
 	}
 	glEnd();
 
@@ -114,10 +115,10 @@ Dibujando primitivas
 
 .. code-block:: c
 
-	glBegin(GL_TRIANGLES);
-	    glVertex3f(0, -1.0f, -0.5f);
-	    glVertex3f(1.0f, -0.9f, -0.5f);
-	    glVertex3f(0.0f, -0.5f, -0.5f);
+	glBegin( GL_TRIANGLES );
+	    glVertex3f( 0, -1.0f, -0.5f );
+	    glVertex3f( 1.0f, -0.9f, -0.5f );
+	    glVertex3f( 0.0f, -0.5f, -0.5f );
 	glEnd();
 
 **Color de relleno**
@@ -126,11 +127,11 @@ Dibujando primitivas
 
 .. code-block:: c
 
-	glBegin(GL_TRIANGLES);
-	    glColor3f(0, 0, 1);
-	    glVertex3f(0, -1.0f, -0.5f);
-	    glVertex3f(1.0f, -0.9f, -0.5f);
-	    glVertex3f(0.0f, -0.5f, -0.5f);
+	glBegin( GL_TRIANGLES );
+	    glColor3f( 0, 0, 1 );
+	    glVertex3f( 0, -1.0f, -0.5f );
+	    glVertex3f( 1.0f, -0.9f, -0.5f );
+	    glVertex3f( 0.0f, -0.5f, -0.5f );
 	glEnd();
 
 
@@ -160,7 +161,7 @@ Uso de la Clase QGLWidget
 
 	protected:
 	    void initializeGL();	
-	    void resizeGL(int w, int h);
+	    void resizeGL( int w, int h );
 	    void paintGL();
 	};
 	
@@ -169,31 +170,31 @@ Uso de la Clase QGLWidget
 	}
 
 	void MiOpenGL::initializeGL()  { 
-	    glClearColor(0,0,0,0);
+	    glClearColor( 0, 0, 0, 0 );
 	}
 
-	void MiOpenGL::resizeGL(int w, int h)  {
+	void MiOpenGL::resizeGL( int w, int h )  {
 	    // Porción de ventana donde puede dibujar.
-	    glViewport(0, 0, w, h);
+	    glViewport( 0, 0, w, h );
 
 	    // Especifica la matriz actual: matriz de proyección (GL_PROJECTION), matriz de modelo
 	    // (GL_MODELVIEW) y matriz de textura (GL_TEXTURE). 
-	    glMatrixMode(GL_PROJECTION);
+	    glMatrixMode( GL_PROJECTION );
 
 	    // Con esto cargamos en el "tipo" de matriz actual (matriz identidad - como resetear).
 	    // Es una matriz 4x4 llena de ceros salvo la diagonal que contiene unos. 
 	    glLoadIdentity();
 
 	    // Para delimitar la zona de trabajo en una caja.
-	    glOrtho(-1, 1, -1, 1, -1, 1);
+	    glOrtho( -1, 1, -1, 1, -1, 1 );
 
 	    // Se vuelve a este tipo de matrices, que afecta a las primitivas geométricas.
-	    glMatrixMode(GL_MODELVIEW);
+	    glMatrixMode( GL_MODELVIEW );
 	}
 
 	void MiOpenGL::paintGL()  {
 	    // Borra un buffer.
-	    glClear(GL_COLOR_BUFFER_BIT);
+	    glClear( GL_COLOR_BUFFER_BIT );
 
 	    //  Carga la matriz identidad.
 	    glLoadIdentity();
@@ -210,11 +211,6 @@ Uso de la Clase QGLWidget
 - Utilizar el teclado para que al presionar la tecla C, el triángulo cambie de color.
 
 
-
-
-
-
-
 Rotación de la escena
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -223,8 +219,8 @@ Rotación de la escena
 
 .. code-block:: c
 
-	// glRotatef(angulo, x, y, z); 
-	glRotatef(5, 0, 0, 1);  // gira 5° con respecto al eje z
+	// glRotatef( angulo, x, y, z ); 
+	glRotatef( 5, 0, 0, 1 );  // gira 5° con respecto al eje z
 
 Traslación de la escena
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -233,8 +229,8 @@ Traslación de la escena
 
 .. code-block:: c
 
-	// glTranslatef(x, y, z);
-	glTranslatef(2, 0, 0);  // Desplaza 2 unidades en el eje x
+	// glTranslatef( x, y, z );
+	glTranslatef( 2, 0, 0 );  // Desplaza 2 unidades en el eje x
 
 Escalado de la escena
 ^^^^^^^^^^^^^^^^^^^^^
@@ -243,8 +239,8 @@ Escalado de la escena
 
 .. code-block:: c
 
-	// glScalef(x, y, z);
-	glScalef(1, 2, 1);  // escala el doble en vertical
+	// glScalef( x, y, z );
+	glScalef( 1, 2, 1 );  // escala el doble en vertical
 	
 Objetos ocultos
 ^^^^^^^^^^^^^^^
@@ -255,31 +251,31 @@ Objetos ocultos
 
 .. code-block:: c
 
-	glColor3f(0, 1, 0);
-	glBegin(GL_TRIANGLES);
-	    glVertex3f(-5, -5, 5);
-	    glVertex3f(0, 0, 0);
-	    glVertex3f(5, -5, 5);
+	glColor3f( 0, 1, 0 );
+	glBegin( GL_TRIANGLES );
+	    glVertex3f( -5, -5, 5 );
+	    glVertex3f( 0, 0, 0 );
+	    glVertex3f( 5, -5, 5 );
 	glEnd();
 
-	glColor3f(0, 0, 1);
-	glPointSize(5);
-	glBegin(GL_POINTS);
-	    glVertex3f(0, -1, 0);
-	    glVertex3f(0, -2, 5);
+	glColor3f( 0, 0, 1 );
+	glPointSize( 5 );
+	glBegin( GL_POINTS );
+	    glVertex3f( 0, -1, 0 );
+	    glVertex3f( 0, -2, 5 );
 	glEnd();
 
 - Para solucionar activamos el buffer de profundidad
 
 .. code-block:: c
 
-	glEnable(GL_DEPTH_TEST); 
+	glEnable( GL_DEPTH_TEST ); 
 
 - Cada vez que se renderiza la escena, limpiamos la pantalla
 
 .. code-block:: c
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 Seguimiento continuo del mouse
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -311,14 +307,14 @@ Modelo de sombreado
 
 .. code-block:: c
      
-	glShadeModel(GL_SMOOTH);	
-	glBegin(GL_TRIANGLES);
-	    glColor3f(1, 0, 0); // activamos el color rojo
-	    glVertex3f(-1.0f, -0.5f, 0.0f);
-	    glColor3f(0, 1, 0); // activamos el color verde
-	    glVertex3f(1.0f, 0.0f, 0.0f);
-	    glColor3f(0, 0, 1); // activamos el color azul
-	    glVertex3f(0.3f, 1.0f, 0.0f);
+	glShadeModel( GL_SMOOTH );	
+	glBegin( GL_TRIANGLES );
+	    glColor3f( 1, 0, 0 ); // activamos el color rojo
+	    glVertex3f( -1.0f, -0.5f, 0.0f );
+	    glColor3f( 0, 1, 0 ); // activamos el color verde
+	    glVertex3f( 1.0f, 0.0f, 0.0f );
+	    glColor3f( 0, 0, 1 ); // activamos el color azul
+	    glVertex3f( 0.3f, 1.0f, 0.0f );
 	glEnd();
 
 **Transformación de viewport (o vista)**
@@ -329,7 +325,7 @@ Modelo de sombreado
 
 .. code-block:: c
 
-	void glViewport(GLint x, GLint y, GLsizei width, GLsizei height);
+	void glViewport( GLint x, GLint y, GLsizei width, GLsizei height );
 	
 **Proyecciones**
 
@@ -339,7 +335,7 @@ Modelo de sombreado
 
 .. code-block:: c
 
-	glMatrixMode(GL_PROJECTION);
+	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
 
 **Proyección ortogonal**
@@ -376,7 +372,7 @@ Modelo de sombreado
 
 .. code-block:: c
 
-	gluPerspective(45.0f,(GLfloat)(width/height), 0.01f, 100.0f);
+	gluPerspective( 45.0f, ( GLfloat )( width / height ), 0.01f, 100.0f );
 	// donde width y height es el ancho y alto de la escena
 
 - Para utilizar ``gluPerspective`` es necesario linkear a la librería en el .pro:
@@ -404,9 +400,9 @@ Modelo de sombreado
 
 .. code-block:: c
 
-	void gluLookAt(GLdouble ojoX, GLdouble ojoY, GLdouble ojoZ, 
-	               GLdouble haciaX, GLdouble haciaY, GLdouble haciaZ, 
-	               GLdouble upX, GLdouble upY, GLdouble upZ)
+	void gluLookAt( GLdouble ojoX, GLdouble ojoY, GLdouble ojoZ, 
+	                GLdouble haciaX, GLdouble haciaY, GLdouble haciaZ, 
+	                GLdouble upX, GLdouble upY, GLdouble upZ )
 				   
 .. figure:: images/clase22/lookat.png		
 
@@ -422,7 +418,7 @@ Modelo de sombreado
 
 - Dibujar un cuadrado cualquiera en el plano z=-2.
 - Controlar la posición de la cámara con las teclas.
-- La cámara siempre vertical y mirando al punto (0, 0, -100).
+- La cámara siempre vertical y mirando al punto ( 0, 0, -100 ).
 
 **Ejercicio 33**
 
