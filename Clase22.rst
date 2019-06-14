@@ -206,7 +206,7 @@ Uso de la Clase QGLWidget
 	    glFlush();
 	}
 
-**Ejercicio 28**
+**Ejercicio 27**
 
 - Dibujar un triángulo en el plano ``z=-50``
 - Utilizar el teclado para que al presionar la tecla C, el triángulo cambie de color.

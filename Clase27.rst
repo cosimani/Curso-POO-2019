@@ -89,3 +89,59 @@ Un par de memes antes del examen
 
 
 
+Levantar base de datos a QTableView
+===================================
+
+- Colocar con el QtDesigner un QTableView
+
+.. code-block:: c
+
+	QSqlRelationalTableModel * tableModelAlumnos;
+	tableModelAlumnos = new QSqlRelationalTableModel( this, adminDB->getDB() ); 
+
+	tableModelAlumnos->setTable( "alumnos" );  // Tabla de la base
+
+	// Para modificar como una planilla de excel
+	tableModelAlumnos->setEditStrategy( QSqlTableModel::OnManualSubmit ); 
+
+	// Otra relación. En lugar de mostrar el id_carrera que muestre el nombre de la carrera.
+	tableModelAlumnos->setRelation( 5, QSqlRelation( "carreras", "id", "nombre" ) );
+
+	tableModelAlumnos->select();  // Hace la consulta.
+
+	// Títulos de las columnas en el widget.
+	tableModelAlumnos->setHeaderData( 1, Qt::Horizontal, "Legajo" );
+	tableModelAlumnos->setHeaderData( 2, Qt::Horizontal, "Nombre" );
+	tableModelAlumnos->setHeaderData( 3, Qt::Horizontal, "Apellido" );
+	tableModelAlumnos->setHeaderData( 4, Qt::Horizontal, "Mail" );
+	tableModelAlumnos->setHeaderData( 5, Qt::Horizontal, "Carrera" ); 
+
+	// Seteamos el QSqlTableModel sobre el QTableView
+	ui->tableViewAlumnos->setModel( tableModelAlumnos );
+
+	// Lista desplegable con el nombre de la carrera, esto cuando se modifique la celda.
+	ui->tableViewAlumnos->setItemDelegate( new QSqlRelationalDelegate( ui->tableViewAlumnos ) );
+
+	// Ocultamos la columna id de la tabla alumnos.
+	ui->tableViewAlumnos->setColumnHidden( 0, true );
+
+	// Ajusta el ancho de la celda con el texto en su interior. Para todas las columnas.
+	ui->tableViewAlumnos->resizeColumnsToContents(); 
+	
+.. code-block:: c
+
+	void Principal::slot_guardarCambios()  {    // Guada todos los cambios 
+	    tableModelAlumnos->submitAll();
+	}
+
+	void Principal::slot_deshacer()  {  // Deshace todos los cambios que hizo el usuario.
+	    tableModelAlumnos->revertAll();
+	}
+
+**Ejercicio 27**
+
+- Hacerlo funcionar mostrando la tabla usuarios y su relación con tabla carreras
+- Tabla alumnos: id, legajo, nombre, apellido, mail, id_carrera
+- Tabla carreras: id, nombre
+- Usar QtDesigner
+		
