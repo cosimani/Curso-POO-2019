@@ -141,7 +141,9 @@ Modelo de sombreado
 
 .. code-block:: c
 
-	void glOrtho(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far)
+	void glOrtho( GLdouble left, GLdouble right, 
+	              GLdouble bottom, GLdouble top, 
+	              GLdouble near, GLdouble far )
 
 .. figure:: images/clase21/ortogonal.png
 
@@ -154,7 +156,9 @@ Modelo de sombreado
 
 .. code-block:: c
 
-	void glFrustum(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble near, GLdouble far)
+	void glFrustum( GLdouble left, GLdouble right, 
+	                GLdouble bottom, GLdouble top, 
+	                GLdouble near, GLdouble far )
 	
 .. figure:: images/clase21/frustum.png	
 
